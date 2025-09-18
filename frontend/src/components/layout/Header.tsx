@@ -21,7 +21,7 @@ const navItems = [
     ]
   },
   { name: 'Portfolio', href: '/portfolio', icon: BookOpen },
-  { name: 'Team', href: '/team', icon: Users },
+  // { name: 'Team', href: '/team', icon: Users },
   { name: 'Contact', href: '/contact', icon: Mail },
 ];
 

@@ -33,7 +33,7 @@ const Footer = () => {
                   <div className="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center group-hover:bg-blue-600/40 transition-colors">
                     <Mail size={18} />
                   </div>
-                  <span>info@innos.com</span>
+                  <span>info@inostraa.com</span>
                 </div>
                 
                 <div className="flex items-center gap-3 text-blue-200 hover:text-white transition-colors group cursor-pointer hover:translate-x-1 transform duration-200">
