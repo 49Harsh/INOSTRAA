@@ -15,9 +15,9 @@ const navItems = [
     href: '/services', 
     icon: Code,
     submenu: [
-      { name: 'Mobile App Development', href: '/services/mobile-app', icon: Smartphone },
-      { name: 'Website Development', href: '/services/website', icon: Globe },
-      { name: 'Custom Software', href: '/services/custom-software', icon: Code },
+      { name: 'Website Development', href: '/services/website-development', icon: Globe },
+      { name: 'Mobile App Development', href: '/services/mobile-app-development', icon: Smartphone },
+      { name: 'Custom Software Development', href: '/services/custom-software-development', icon: Code },
     ]
   },
   { name: 'Portfolio', href: '/portfolio', icon: BookOpen },

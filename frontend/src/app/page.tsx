@@ -4,32 +4,9 @@ import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Star, Zap, Shield, Target, Users, Award, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
-// Temporary simple data to isolate the issue
-const companyInfo = {
-  name: "Innos",
-  tagline: "Empowering Businesses Through Digital Excellence",
-  visionMission: {
-    mission: "To empower businesses through intelligent, tailor-made digital solutions"
-  },
-  techStack: ["React", "Flutter", "Node.js", "Laravel"]
-};
+import { websiteContent } from '@/data';
 
-const services = [
-  {
-    id: "1",
-    title: "Web Development",
-    description: "Modern web solutions",
-    features: ["Responsive Design", "SEO Optimized"]
-  }
-];
-
-const features = [
-  {
-    id: "1",
-    title: "Innovation",
-    description: "Cutting-edge solutions"
-  }
-];
+const { companyInfo, services, features } = websiteContent;
 import HeroBackground from '@/components/three/HeroBackground';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -102,15 +79,17 @@ function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
-            <Button 
-              size="lg" 
-              variant="gradient" 
-              icon={<ArrowRight size={20} />} 
-              iconPosition="right"
-              className="text-lg px-8 py-4 shadow-2xl"
-            >
-              Get Started
-            </Button>
+            <Link href="/services">
+              <Button 
+                size="lg" 
+                variant="gradient" 
+                icon={<ArrowRight size={20} />} 
+                iconPosition="right"
+                className="text-lg px-8 py-4 shadow-2xl"
+              >
+                Explore Services
+              </Button>
+            </Link>
             <Link href="/portfolio">
               <Button size="lg" variant="outline" className="text-lg px-8 py-4 bg-white/10 border-white/30 text-white hover:bg-white/20">
                 View Our Work
@@ -163,40 +142,58 @@ function ServicesSection() {
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full group hover:shadow-2xl transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm">
-                <CardHeader>
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <div className="w-8 h-8 bg-white rounded-lg"></div>
-                  </div>
-                  <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
-                  <CardDescription>{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-center text-gray-700">
-                        <Star size={16} className="text-blue-600 mr-3 flex-shrink-0" fill="currentColor" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6">
-                    <Button variant="outline" className="w-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                      Learn More
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          {services.map((service, index) => {
+            // Map service categories to icons
+            const getServiceIcon = (category: string) => {
+              switch (category) {
+                case 'website':
+                  return '🌐';
+                case 'mobile-app':
+                  return '📱';
+                case 'custom-software':
+                  return '💻';
+                default:
+                  return '⚡';
+              }
+            };
+            
+            return (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full group hover:shadow-2xl transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm">
+                  <CardHeader>
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-2xl">{getServiceIcon(service.category)}</span>
+                    </div>
+                    <CardTitle className="text-2xl text-gray-900 mb-2">{service.title}</CardTitle>
+                    <CardDescription>{service.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {service.features.slice(0, 3).map((feature, i) => (
+                        <li key={i} className="flex items-center text-gray-700">
+                          <Star size={16} className="text-blue-600 mr-3 flex-shrink-0" fill="currentColor" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-6">
+                      <Link href="/services">
+                        <Button variant="outline" className="w-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                          Learn More
+                        </Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </AnimatedSection>

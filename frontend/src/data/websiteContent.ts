@@ -17,6 +17,20 @@ const websiteContent: WebsiteContent = {
 
   services: [
     {
+      id: "website-development",
+      category: "website",
+      title: "Website Development",
+      description: "We build modern, responsive, SEO-optimized websites tailored to your brand and business needs — whether it's a company portfolio, e-commerce store, or custom web portal.",
+      features: [
+        "Business websites",
+        "E-commerce websites",
+        "Landing pages & UI/UX Design",
+        "SEO optimization",
+        "Responsive design",
+        "Custom web portals"
+      ]
+    },
+    {
       id: "mobile-app-development",
       category: "mobile-app",
       title: "Mobile App Development",
@@ -25,18 +39,9 @@ const websiteContent: WebsiteContent = {
         "Native & Hybrid App Development",
         "UI/UX for mobile interfaces",
         "Maintenance & scaling",
-        "API & third-party integrations"
-      ]
-    },
-    {
-      id: "website-development",
-      category: "website",
-      title: "Website Development",
-      description: "We build modern, responsive, SEO-optimized websites tailored to your brand and business needs — whether it's a company portfolio, e-commerce store, or custom web portal.",
-      features: [
-        "Business websites",
-        "E-commerce websites",
-        "Landing pages & UI/UX Design"
+        "API & third-party integrations",
+        "Cross-platform compatibility",
+        "App store deployment"
       ]
     },
     {
@@ -46,7 +51,11 @@ const websiteContent: WebsiteContent = {
       description: "We design and develop software systems that align with your business processes, offering functionality, scalability, and reliability.",
       features: [
         "Business automation tools",
-        "Tailored dashboards and analytics"
+        "Tailored dashboards and analytics",
+        "Enterprise software solutions",
+        "Database management systems",
+        "Workflow optimization",
+        "System integration"
       ]
     }
   ],
