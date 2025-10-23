@@ -10,9 +10,9 @@ import { companyInfo } from '@/data';
 const navItems = [
   { name: 'Home', href: '/', icon: null },
   { name: 'About', href: '/about', icon: Users },
-  { 
-    name: 'Services', 
-    href: '/services', 
+  {
+    name: 'Services',
+    href: '/services',
     icon: Code,
     submenu: [
       { name: 'Website Development', href: '/services/website-development', icon: Globe },
@@ -49,33 +49,39 @@ export default function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={cn(
-        'fixed top-0 w-full z-50 transition-all duration-300',
-        isScrolled 
-          ? 'bg-white/80 backdrop-blur-lg border-b border-gray-200/50 shadow-lg' 
-          : 'bg-transparent'
+        'fixed z-50 transition-all duration-500 ease-in-out',
+        isScrolled
+          ? 'top-4 left-60 right-60 bg-gray-900/90 backdrop-blur-lg border border-purple-500/20 shadow-2xl shadow-purple-500/10 rounded-2xl'
+          : 'top-0 left-0 right-0 bg-transparent'
       )}
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
+      <nav className={cn(
+        'transition-all duration-500 ease-in-out',
+        isScrolled ? 'px-6' : 'container mx-auto px-4 sm:px-6 lg:px-8'
+      )}>
+        <div className={cn(
+          'flex justify-between items-center transition-all duration-500 ease-in-out',
+          isScrolled ? 'h-14' : 'h-16 lg:h-20'
+        )}>
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Link href="/" className="flex items-center space-x-2 group">
+            <Link href="/" className="flex items-center space-x-3 group">
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-white font-bold text-xl">{companyInfo.name?.[0] || 'I'}</span>
-                </div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-300"></div>
+                <img
+                  src="/trans-log.svg"
+                  alt="Logo"
+                  className={cn(
+                    '',
+                    isScrolled ? 'h-24 w-auto' : 'w-64 h-64'
+                  )}
+                />
+
               </div>
-              <span className={cn(
-                'text-xl font-bold transition-colors duration-300',
-                isScrolled ? 'text-gray-900' : 'text-white'
-              )}>
-                {companyInfo.name}
-              </span>
+
             </Link>
           </motion.div>
 
@@ -98,8 +104,8 @@ export default function Header() {
                     <button
                       className={cn(
                         'flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300 group',
-                        isScrolled 
-                          ? 'text-gray-700 hover:text-blue-600 hover:bg-blue-50' 
+                        isScrolled
+                          ? 'text-gray-300 hover:text-purple-400 hover:bg-purple-500/10'
                           : 'text-white/90 hover:text-white hover:bg-white/10'
                       )}
                     >
@@ -107,7 +113,7 @@ export default function Header() {
                       {item.name}
                       <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
                     </button>
-                    
+
                     <AnimatePresence>
                       {activeSubmenu === item.name && (
                         <motion.div
@@ -115,13 +121,13 @@ export default function Header() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-200/50 overflow-hidden"
+                          className="absolute top-full left-0 mt-2 w-64 bg-gray-900/95 backdrop-blur-lg rounded-xl shadow-xl border border-purple-500/20 overflow-hidden"
                         >
                           {item.submenu.map((subItem) => (
                             <Link
                               key={subItem.name}
                               href={subItem.href}
-                              className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                              className="flex items-center px-4 py-3 text-gray-300 hover:bg-purple-500/10 hover:text-purple-400 transition-colors duration-200"
                             >
                               {subItem.icon && <subItem.icon size={18} className="mr-3" />}
                               {subItem.name}
@@ -136,12 +142,12 @@ export default function Header() {
                     href={item.href}
                     className={cn(
                       'flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300 relative overflow-hidden group',
-                      isScrolled 
-                        ? 'text-gray-700 hover:text-blue-600' 
+                      isScrolled
+                        ? 'text-gray-300 hover:text-purple-400'
                         : 'text-white/90 hover:text-white'
                     )}
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-lg"></span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-emerald-500/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-lg"></span>
                     <span className="relative flex items-center">
                       {item.icon && <item.icon size={18} className="mr-2" />}
                       {item.name}
@@ -161,9 +167,9 @@ export default function Header() {
           >
             <Link
               href="/contact"
-              className="relative px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg overflow-hidden group transition-all duration-300 hover:shadow-lg hover:scale-105"
+              className="relative px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-medium rounded-lg overflow-hidden group transition-all duration-300 hover:shadow-lg hover:scale-105 shadow-emerald-500/20"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-300"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-300"></span>
               <span className="relative">Get Started</span>
             </Link>
           </motion.div>
@@ -176,8 +182,8 @@ export default function Header() {
             onClick={() => setIsOpen(!isOpen)}
             className={cn(
               'lg:hidden p-2 rounded-lg transition-colors duration-300',
-              isScrolled 
-                ? 'text-gray-700 hover:bg-gray-100' 
+              isScrolled
+                ? 'text-gray-300 hover:bg-purple-500/10'
                 : 'text-white hover:bg-white/10'
             )}
           >
@@ -215,7 +221,7 @@ export default function Header() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200/50 mt-4 rounded-b-xl overflow-hidden"
+              className="lg:hidden bg-gray-900/95 backdrop-blur-lg border-t border-purple-500/20 mt-4 rounded-b-xl overflow-hidden"
             >
               <div className="px-4 py-6 space-y-4">
                 {navItems.map((item, index) => (
@@ -229,21 +235,21 @@ export default function Header() {
                       <div>
                         <button
                           onClick={() => handleSubmenuToggle(item.name)}
-                          className="flex items-center justify-between w-full px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                          className="flex items-center justify-between w-full px-4 py-3 text-gray-300 hover:bg-purple-500/10 rounded-lg transition-colors duration-200"
                         >
                           <div className="flex items-center">
                             {item.icon && <item.icon size={20} className="mr-3" />}
                             {item.name}
                           </div>
-                          <ChevronDown 
-                            size={20} 
+                          <ChevronDown
+                            size={20}
                             className={cn(
                               'transition-transform duration-200',
                               activeSubmenu === item.name && 'rotate-180'
-                            )} 
+                            )}
                           />
                         </button>
-                        
+
                         <AnimatePresence>
                           {activeSubmenu === item.name && (
                             <motion.div
@@ -258,7 +264,7 @@ export default function Header() {
                                   key={subItem.name}
                                   href={subItem.href}
                                   onClick={() => setIsOpen(false)}
-                                  className="flex items-center px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors duration-200"
+                                  className="flex items-center px-4 py-2 text-gray-400 hover:bg-purple-500/10 hover:text-purple-400 rounded-lg transition-colors duration-200"
                                 >
                                   {subItem.icon && <subItem.icon size={18} className="mr-3" />}
                                   {subItem.name}
@@ -272,7 +278,7 @@ export default function Header() {
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors duration-200"
+                        className="flex items-center px-4 py-3 text-gray-300 hover:bg-purple-500/10 hover:text-purple-400 rounded-lg transition-colors duration-200"
                       >
                         {item.icon && <item.icon size={20} className="mr-3" />}
                         {item.name}
@@ -280,7 +286,7 @@ export default function Header() {
                     )}
                   </motion.div>
                 ))}
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -290,7 +296,7 @@ export default function Header() {
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="block w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg text-center transition-all duration-300 hover:shadow-lg"
+                    className="block w-full px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-medium rounded-lg text-center transition-all duration-300 hover:shadow-lg shadow-emerald-500/20"
                   >
                     Get Started
                   </Link>

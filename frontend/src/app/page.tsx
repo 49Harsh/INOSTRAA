@@ -1,347 +1,379 @@
 'use client';
 
-import React, { Suspense } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Star, Zap, Shield, Target, Users, Award, ChevronDown } from 'lucide-react';
-import Link from 'next/link';
-import { websiteContent } from '@/data';
+import React, { useEffect, useRef } from 'react';
+import { BarChart3, TrendingUp, PieChart, CheckCircle2 } from 'lucide-react';
 
-const { companyInfo, services, features } = websiteContent;
-import HeroBackground from '@/components/three/HeroBackground';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
-import { useInView } from 'react-intersection-observer';
+const PuzzleLandingPage = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-function AnimatedSection({ children, className }: { children: React.ReactNode; className?: string }) {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Animation variables
+    let animationFrame: number;
+    let offset = 0;
+
+    const drawWireframe = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+
+      // Electric circles with sparks - bigger circles
+      const circles = 4;
+      const maxRadius = Math.min(canvas.width, canvas.height) * 0.7; // Even bigger circles
+
+      for (let i = 0; i < circles; i++) {
+        const radius = (maxRadius / circles) * (i + 1);
+
+        // Draw circle with glow effect using website colors - thinner lines
+        ctx.shadowColor = 'rgba(168, 85, 247, 0.6)';
+        ctx.shadowBlur = 10;
+        ctx.strokeStyle = 'rgba(168, 85, 247, 0.4)';
+        ctx.lineWidth = 1.5; // Reduced from 3 to 1.5
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Inner glow - thinner
+        ctx.shadowBlur = 15;
+        ctx.strokeStyle = 'rgba(168, 85, 247, 0.2)';
+        ctx.lineWidth = 0.5; // Reduced from 1 to 0.5
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Reset shadow
+        ctx.shadowBlur = 0;
+
+        // Electric spark moving around each circle with random directions
+        const directions = [1, -1, 1.5, -0.8]; // Different directions and speeds for each circle
+        const sparkAngle = offset * directions[i] + (i * 0.5);
+        const sparkX = centerX + Math.cos(sparkAngle) * radius;
+        const sparkY = centerY + Math.sin(sparkAngle) * radius;
+
+        // Draw electric spark - smaller but more highlighted
+        ctx.shadowColor = '#ffffff';
+        ctx.shadowBlur = 15; // Increased highlight
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(sparkX, sparkY, 3, 0, Math.PI * 2); // Reduced from 6 to 3
+        ctx.fill();
+
+        // Purple glow - more intense
+        ctx.shadowColor = 'rgba(168, 85, 247, 1)';
+        ctx.shadowBlur = 25; // Increased glow
+        ctx.fillStyle = 'rgba(168, 85, 247, 1)'; // More opaque
+        ctx.beginPath();
+        ctx.arc(sparkX, sparkY, 2, 0, Math.PI * 2); // Reduced from 4 to 2
+        ctx.fill();
+
+        // Cyan accent glow - more intense
+        ctx.shadowColor = 'rgba(139, 92, 246, 1)';
+        ctx.shadowBlur = 30;
+        ctx.fillStyle = 'rgba(139, 92, 246, 0.6)';
+        ctx.beginPath();
+        ctx.arc(sparkX, sparkY, 3, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Reset shadow
+        ctx.shadowBlur = 0;
+      }
+
+      // Draw center dot with glow
+      ctx.shadowColor = 'rgba(168, 85, 247, 1)';
+      ctx.shadowBlur = 20;
+      ctx.fillStyle = 'rgba(168, 85, 247, 0.8)';
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // White center core
+      ctx.shadowColor = '#ffffff';
+      ctx.shadowBlur = 10;
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 2, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Reset shadow
+      ctx.shadowBlur = 0;
+
+      // Draw dotted cross lines like in the image
+      const drawDottedLine = (x1: number, y1: number, x2: number, y2: number) => {
+        const distance = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+        const dotSpacing = 15; // Space between dots
+        const dotSize = 2;
+
+        for (let i = dotSpacing; i < distance; i += dotSpacing) {
+          const ratio = i / distance;
+          const x = x1 + (x2 - x1) * ratio;
+          const y = y1 + (y2 - y1) * ratio;
+
+          // Fade effect - dots get fainter as they go away from center
+          const alpha = Math.max(0.1, 0.6 - (i / distance) * 0.5);
+
+          ctx.fillStyle = `rgba(168, 85, 247, ${alpha})`;
+          ctx.beginPath();
+          ctx.arc(x, y, dotSize, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      };
+
+      // Vertical dotted line (up and down)
+      drawDottedLine(centerX, centerY - 20, centerX, 0); // Up
+      drawDottedLine(centerX, centerY + 20, centerX, canvas.height); // Down
+
+      // Horizontal dotted line (left and right)
+      drawDottedLine(centerX - 20, centerY, 0, centerY); // Left
+      drawDottedLine(centerX + 20, centerY, canvas.width, centerY); // Right
+
+      // Draw connecting lines to circles
+      const lines = 12;
+      for (let i = 0; i < lines; i++) {
+        const angle = (Math.PI * 2 / lines) * i + offset * 0.5;
+        const x1 = centerX + Math.cos(angle) * (maxRadius * 0.15);
+        const y1 = centerY + Math.sin(angle) * (maxRadius * 0.15);
+        const x2 = centerX + Math.cos(angle) * maxRadius;
+        const y2 = centerY + Math.sin(angle) * maxRadius;
+
+        const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
+        gradient.addColorStop(0, 'rgba(168, 85, 247, 0.15)');
+        gradient.addColorStop(1, 'rgba(168, 85, 247, 0)');
+
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      }
+
+      offset += 0.008; // Slower speed
+      animationFrame = requestAnimationFrame(drawWireframe);
+    };
+
+    drawWireframe();
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener('resize', resizeCanvas);
+    };
+  }, []);
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden">
+      {/* Animated Wireframe Background */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full opacity-40"
+      />
 
-function HeroSection() {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
-      <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900" />}>
-        <HeroBackground />
-      </Suspense>
-      
-      {/* Hero Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
-        >
-          <motion.h1 
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent"
-            initial={{ scale: 0.5 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            {companyInfo.name}
-          </motion.h1>
-          
-          <motion.p 
-            className="text-xl md:text-2xl mb-8 text-blue-100"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            {companyInfo.tagline}
-          </motion.p>
-          
-          <motion.p 
-            className="text-lg mb-12 max-w-2xl mx-auto text-gray-300"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            {companyInfo.visionMission.mission}
-          </motion.p>
-          
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            <Link href="/services">
-              <Button 
-                size="lg" 
-                variant="gradient" 
-                icon={<ArrowRight size={20} />} 
-                iconPosition="right"
-                className="text-lg px-8 py-4 shadow-2xl"
-              >
-                Explore Services
-              </Button>
-            </Link>
-            <Link href="/portfolio">
-              <Button size="lg" variant="outline" className="text-lg px-8 py-4 bg-white/10 border-white/30 text-white hover:bg-white/20">
-                View Our Work
-              </Button>
-            </Link>
-          </motion.div>
-        </motion.div>
-        
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.5 }}
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-white/60"
-          >
-            <ChevronDown size={32} />
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/50 to-gray-950" />
 
-function ServicesSection() {
-  return (
-    <AnimatedSection className="py-24 bg-gradient-to-br from-gray-50 to-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Our Services
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            We deliver cutting-edge solutions that transform your business
-          </motion.p>
+      {/* Navigation
+      <nav className="relative z-10 flex items-center justify-between px-8 py-6">
+        <div className="flex items-center gap-2">
+          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+            <PieChart className="w-6 h-6 text-white" />
+          </div>
+          <span className="text-2xl font-bold">Puzzle</span>
         </div>
-        
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            // Map service categories to icons
-            const getServiceIcon = (category: string) => {
-              switch (category) {
-                case 'website':
-                  return '🌐';
-                case 'mobile-app':
-                  return '📱';
-                case 'custom-software':
-                  return '💻';
-                default:
-                  return '⚡';
-              }
-            };
-            
-            return (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full group hover:shadow-2xl transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm">
-                  <CardHeader>
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <span className="text-2xl">{getServiceIcon(service.category)}</span>
-                    </div>
-                    <CardTitle className="text-2xl text-gray-900 mb-2">{service.title}</CardTitle>
-                    <CardDescription>{service.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-3">
-                      {service.features.slice(0, 3).map((feature, i) => (
-                        <li key={i} className="flex items-center text-gray-700">
-                          <Star size={16} className="text-blue-600 mr-3 flex-shrink-0" fill="currentColor" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-6">
-                      <Link href="/services">
-                        <Button variant="outline" className="w-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                          Learn More
-                        </Button>
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+        <div className="hidden md:flex items-center gap-8 text-gray-300">
+          <a href="#" className="hover:text-white transition-colors">Product</a>
+          <a href="#" className="hover:text-white transition-colors">Customers</a>
+          <a href="#" className="hover:text-white transition-colors">Company</a>
+          <a href="#" className="hover:text-white transition-colors">Pricing</a>
         </div>
-      </div>
-    </AnimatedSection>
-  );
-}
+        <div className="flex items-center gap-4">
+          <button className="px-6 py-2 border border-purple-500/50 rounded-lg hover:bg-purple-500/10 transition-colors">
+            Log in
+          </button>
+          <button className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-lg shadow-emerald-500/20">
+            Get started for free
+          </button>
+        </div>
+      </nav> */}
 
-function FeaturesSection() {
-  const iconMap = {
-    0: Zap,
-    1: Shield,
-    2: Target,
-    3: Users,
-    4: Award,
-  };
+      {/* Hero Section */}
+      <div className="relative z-10 flex flex-col items-center justify-center px-8 py-20 text-center">
+        <h1 className="text-6xl mt-22 md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
+          Digital Solutions That<br />Transform Your Business
+        </h1>
+        <p className="text-gray-400 text-lg mb-12">
+          We create <span className="text-purple-400 font-semibold">websites</span>, <span className="text-cyan-400 font-semibold">mobile apps</span>, and <span className="text-emerald-400 font-semibold">software solutions</span>
+        </p>
 
-  return (
-    <AnimatedSection className="py-24 bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 text-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+        {/* Feature Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-7xl w-full mt-12">
+          {/* Card 1 - Website Development */}
+          <FeatureCard
+            title="Website Development"
+            icon={<CheckCircle2 className="w-6 h-6" />}
+            description="Modern, responsive websites that convert"
+            delay={0}
           >
-            Why Choose Us
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-blue-100 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            We combine innovation with expertise to deliver exceptional results
-          </motion.p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.slice(0, 5).map((feature, index) => {
-            const Icon = iconMap[index as keyof typeof iconMap];
-            return (
-              <motion.div
-                key={feature.id}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center group"
-              >
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Icon size={32} className="text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-                <p className="text-blue-100">{feature.description}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </AnimatedSection>
-  );
-}
+            <div className="flex gap-2 mb-4">
+              <div className="flex-1 h-2 bg-gray-700 rounded" />
+              <div className="px-3 py-1 bg-emerald-500 rounded text-xs">Live</div>
+              <div className="flex-1 h-2 bg-gray-700 rounded" />
+            </div>
+            <div className="space-y-2 text-left text-sm">
+              <div className="px-3 py-2 bg-gray-800/50 rounded">React/Next.js</div>
+              <div className="px-3 py-2 bg-gray-800/80 rounded font-semibold">Responsive Design</div>
+            </div>
+          </FeatureCard>
 
-function TechStackSection() {
-  return (
-    <AnimatedSection className="py-24 bg-white">
-      <div className="container mx-auto px-4 text-center">
-        <motion.h2 
-          className="text-4xl md:text-5xl font-bold text-gray-900 mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Our Tech Stack
-        </motion.h2>
-        
-        <div className="flex flex-wrap justify-center items-center gap-8">
-          {companyInfo.techStack.map((tech, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group"
-            >
-              <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl font-medium text-gray-800 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
-                {tech}
+          {/* Card 2 - Mobile App Development */}
+          <FeatureCard
+            title="Mobile App Development"
+            icon={<TrendingUp className="w-6 h-6" />}
+            description="iOS & Android apps that engage users"
+            delay={0.5}
+          >
+            <div className="h-40">
+              <BarChart3 className="w-full h-full text-purple-500/20" />
+              <div className="flex justify-between text-xs text-gray-500 mt-2">
+                <span>iOS</span>
+                <span>Android</span>
+                <span>React Native</span>
+                <span>Flutter</span>
+                <span>Native</span>
+                <span>PWA</span>
               </div>
-            </motion.div>
-          ))}
+            </div>
+          </FeatureCard>
+
+          {/* Card 3 - Software Solutions */}
+          <FeatureCard
+            title="Custom Software Solutions"
+            icon={<PieChart className="w-6 h-6" />}
+            description="Tailored software for your business needs"
+            delay={1}
+          >
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-16 h-16 rounded-full border-4 border-cyan-500 border-t-transparent animate-spin" />
+                <div className="text-left">
+                  <div className="text-sm text-gray-400">100% Custom Built</div>
+                  <div className="text-xs text-gray-500">for your business</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-16 h-16 rounded-full border-4 border-purple-500 border-t-transparent" />
+                <div className="text-left">
+                  <div className="text-sm text-gray-400">Scalable & Secure</div>
+                  <div className="text-xs text-gray-500">enterprise ready</div>
+                </div>
+              </div>
+            </div>
+          </FeatureCard>
+
+          {/* Card 4 - Full-Stack Development */}
+          <FeatureCard
+            title="Full-Stack Development"
+            icon={<BarChart3 className="w-6 h-6" />}
+            description="End-to-end development services"
+            delay={1.5}
+          >
+            <div className="space-y-2">
+              {[
+                { label: 'Frontend', value: 'React/Vue', change: 'Modern' },
+                { label: 'Backend', value: 'Node.js/Python', change: 'Robust' },
+                { label: 'Database', value: 'SQL/NoSQL', change: 'Scalable' },
+                { label: 'Cloud', value: 'AWS/Azure', change: 'Reliable' }
+              ].map((item, idx) => (
+                <div key={idx} className="flex justify-between items-center text-xs bg-gray-800/30 px-3 py-2 rounded">
+                  <span className="text-gray-400">{item.label}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-300">{item.value}</span>
+                    <span className="text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded">{item.change}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FeatureCard>
         </div>
       </div>
-    </AnimatedSection>
-  );
-}
 
-function CTASection() {
-  return (
-    <AnimatedSection className="py-24 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-      <div className="container mx-auto px-4 text-center">
-        <motion.h2 
-          className="text-4xl md:text-5xl font-bold mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Ready to Start Your Project?
-        </motion.h2>
-        <motion.p 
-          className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          Let&apos;s transform your ideas into powerful digital solutions
-        </motion.p>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-        >
-          <Link href="/contact">
-            <Button size="xl" variant="gradient" className="shadow-2xl">
-              Get Started Today
-            </Button>
-          </Link>
-          <Link href="/portfolio">
-            <Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900">
-              View Portfolio
-            </Button>
-          </Link>
-        </motion.div>
-      </div>
-    </AnimatedSection>
-  );
-}
-
-export default function Home() {
-  return (
-    <div className="overflow-x-hidden">
-      <HeroSection />
-      <ServicesSection />
-      <FeaturesSection />
-      <TechStackSection />
-      <CTASection />
+      {/* Floating Images Section
+      <div className="relative z-10 flex justify-center gap-8 px-8 py-20">
+        <FloatingImage delay={0} image="/api/placeholder/300/400" />
+        <FloatingImage delay={1} image="/api/placeholder/300/400" />
+        <FloatingImage delay={2} image="/api/placeholder/300/400" />
+      </div> */}
     </div>
   );
-}
+};
+
+const FeatureCard = ({ title, icon, description, children, delay = 0 }: any) => (
+  <div
+    className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-purple-500/30 transition-all hover:shadow-xl hover:shadow-purple-500/10"
+    style={{
+      animation: `cardFloat 4s ease-in-out infinite`,
+      animationDelay: `${delay}s`
+    }}
+  >
+    <style jsx>{`
+      @keyframes cardFloat {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        25% {
+          transform: translateY(-15px);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+        75% {
+          transform: translateY(-20px);
+        }
+      }
+    `}</style>
+    <div className="flex items-center gap-2 mb-3 text-purple-400">
+      {icon}
+    </div>
+    <h3 className="text-lg font-semibold mb-2">{title}</h3>
+    <p className="text-xs text-gray-500 mb-4">{description}</p>
+    <div className="mt-4">{children}</div>
+  </div>
+);
+
+const FloatingImage = ({ delay, image }: any) => (
+  <div
+    className="w-64 h-80 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl border border-gray-700/50"
+    style={{
+      animation: `float 3s ease-in-out infinite`,
+      animationDelay: `${delay}s`
+    }}
+  >
+    <style jsx>{`
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+    `}</style>
+    <div className="w-full h-full rounded-xl bg-gradient-to-br from-purple-500/10 to-cyan-500/10 flex items-center justify-center">
+      <div className="text-gray-600 text-sm">Image {delay + 1}</div>
+    </div>
+  </div>
+);
+
+export default PuzzleLandingPage;
