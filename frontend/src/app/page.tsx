@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { websiteContent } from '@/data';
 import AnimatedPuzzleBackground from '@/components/AnimatedPuzzleBackground';
+import StickyContactWidget from '@/components/StickyContactWidget';
 
 // Get services from websiteContent
 const { services, companyInfo } = websiteContent;
@@ -392,6 +393,15 @@ const PuzzleLandingPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Sticky Contact Widget */}
+      <StickyContactWidget
+        contactInfo={{
+          phone: '+91 80974 76088',
+          email: 'contact@inostratechnologies.com',
+          whatsapp: '+91 80974 76088'
+        }}
+      />
     </div>
   );
 };
