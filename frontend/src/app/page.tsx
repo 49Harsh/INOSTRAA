@@ -70,10 +70,10 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
     >
-      <div className="relative h-full bg-gradient-to-br from-white to-gray-50/50 rounded-3xl border border-gray-200/50 overflow-hidden transition-all duration-700 hover:shadow-2xl hover:shadow-current/10 group-hover:border-transparent backdrop-blur-sm">
+      <div className="relative h-full bg-gradient-to-br from-gray-800/60 to-gray-900/80 backdrop-blur-sm rounded-3xl border border-gray-700/50 overflow-hidden transition-all duration-700 hover:shadow-2xl hover:shadow-current/10 group-hover:border-transparent">
         {/* Dynamic gradient border */}
         <div className={`absolute inset-0 bg-gradient-to-r ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl p-[2px]`}>
-          <div className="bg-white rounded-3xl h-full w-full"></div>
+          <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/80 backdrop-blur-sm rounded-3xl h-full w-full"></div>
         </div>
 
         {/* Mouse follower effect */}
@@ -149,19 +149,19 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
             </motion.div>
 
             <motion.h3
-              className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-emerald-600 group-hover:bg-clip-text transition-all duration-300"
+              className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300"
               whileHover={{ scale: 1.05 }}
             >
               {service.title}
             </motion.h3>
-            <p className="text-gray-600 leading-relaxed text-base group-hover:text-gray-700 transition-colors duration-300">
+            <p className="text-gray-300 leading-relaxed text-base group-hover:text-gray-200 transition-colors duration-300">
               {service.description}
             </p>
           </div>
 
           {/* Features */}
           <div className="space-y-4 mb-8 flex-grow">
-            <h4 className="font-semibold text-gray-900 flex items-center text-lg">
+            <h4 className="font-semibold text-white flex items-center text-lg">
               <motion.div
                 className={`w-3 h-3 bg-gradient-to-r ${colors.gradient} rounded-full mr-3`}
                 animate={{ scale: isHovered ? [1, 1.3, 1] : 1 }}
@@ -173,7 +173,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
               {service.features.map((feature: string, i: number) => (
                 <motion.li
                   key={i}
-                  className="flex items-start text-gray-700 group-hover:text-gray-800 transition-colors duration-300"
+                  className="flex items-start text-gray-300 group-hover:text-gray-200 transition-colors duration-300"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -341,12 +341,14 @@ const PuzzleLandingPage = () => {
       <ExtendedPuzzleSection />
 
       {/* Services Section */}
-      <section className="relative py-32 bg-gradient-to-br from-gray-50 via-white to-gray-50/30 overflow-hidden">
-        {/* Background decorations */}
+      <section className="relative py-32 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden">
+        {/* Animated Background for Services Section */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-purple-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-emerald-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
+          <AnimatedPuzzleBackground opacity={0.25} />
         </div>
+
+        {/* Gradient overlay for consistency */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-950 via-gray-900/50 to-gray-950" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
@@ -354,27 +356,27 @@ const PuzzleLandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-100 to-emerald-100 rounded-full border border-purple-200/50 mb-8"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-emerald-400/30 mb-8"
             >
-              <Target size={20} className="text-purple-600" />
-              <span className="text-sm font-medium text-purple-800">Our Services</span>
+              <Target size={20} className="text-emerald-400" />
+              <span className="text-sm font-medium text-emerald-300">Our Services</span>
             </motion.div>
 
             <motion.h2
-              className="text-5xl md:text-6xl font-bold text-gray-900 mb-6"
+              className="text-5xl md:text-6xl font-bold text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="bg-gradient-to-r from-gray-900 via-purple-800 to-emerald-800 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-emerald-200 to-purple-200 bg-clip-text text-transparent">
                 Digital Solutions
               </span>
               <br />
-              <span className="text-gray-900">That Transform</span>
+              <span className="text-white">That Transform</span>
             </motion.h2>
 
             <motion.p
-              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
