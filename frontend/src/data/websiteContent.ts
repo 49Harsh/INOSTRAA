@@ -6,7 +6,7 @@ import { WebsiteContent } from '@/types/websiteContent';
  */
 const websiteContent: WebsiteContent = {
   companyInfo: {
-    name: "Innos",
+    name: "Inostra Technologies",
     tagline: "Empowering Businesses Through Digital Excellence",
     visionMission: {
       vision: "To become a trusted global name in IT by continuously evolving with technology and delivering digital excellence that drives client success.",
@@ -69,7 +69,7 @@ const websiteContent: WebsiteContent = {
       category: "website"
     },
     {
-      id: "project-b", 
+      id: "project-b",
       name: "Project B - Milan Manch",
       url: "https://milanmanch.com/",
       description: "Community platform and event management system",
@@ -114,7 +114,7 @@ const websiteContent: WebsiteContent = {
     },
     {
       id: "milestones-achieved",
-      title: "Milestones Achieved", 
+      title: "Milestones Achieved",
       description: "This part outlines significant milestones achieved by the company that have shaped its trajectory.",
       category: "achievement"
     }
@@ -167,15 +167,15 @@ const websiteContent: WebsiteContent = {
 export default websiteContent;
 
 // Named exports for tree-shaking and selective imports
-export const { 
-  companyInfo, 
-  services, 
-  portfolio, 
-  features, 
-  milestones, 
-  techSolutions, 
-  teamIntro, 
-  seoContent, 
-  socialContact, 
-  responsivenessContent 
+export const {
+  companyInfo,
+  services,
+  portfolio,
+  features,
+  milestones,
+  techSolutions,
+  teamIntro,
+  seoContent,
+  socialContact,
+  responsivenessContent
 } = websiteContent;

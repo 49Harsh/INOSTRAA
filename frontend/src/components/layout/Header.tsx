@@ -21,6 +21,7 @@ const navItems = [
     ]
   },
   { name: 'Portfolio', href: '/portfolio', icon: BookOpen },
+  { name: 'Animated BG', href: '/animated-bg', icon: Code },
   // { name: 'Team', href: '/team', icon: Users },
   { name: 'Contact', href: '/contact', icon: Mail },
 ];

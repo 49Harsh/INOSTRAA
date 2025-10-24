@@ -44,27 +44,27 @@ function HeroSection() {
     target: containerRef,
     offset: ["start start", "end start"]
   });
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Dynamic gradient background */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900"
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950"
         style={{ y, opacity }}
       />
-      
+
       {/* Animated mesh gradient overlay */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 animate-pulse"></div>
-        <div className="absolute inset-0 bg-gradient-to-l from-cyan-600/20 via-blue-600/20 to-indigo-600/20 animate-pulse delay-1000"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-emerald-600/20 to-purple-600/20 animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-l from-emerald-600/20 via-purple-600/20 to-emerald-600/20 animate-pulse delay-1000"></div>
       </div>
-      
+
       {/* Floating particles */}
       <FloatingParticles />
-      
+
       {/* Geometric shapes */}
       <div className="absolute inset-0">
         <motion.div
@@ -83,7 +83,7 @@ function HeroSection() {
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10 text-center text-white">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -101,31 +101,31 @@ function HeroSection() {
             <Sparkles size={20} className="text-yellow-400" />
             <span className="text-sm font-medium">Premium Digital Solutions</span>
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             className="text-6xl md:text-8xl font-bold mb-8 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
               Our
             </span>
             <br />
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-400 via-emerald-400 to-purple-400 bg-clip-text text-transparent">
               Services
             </span>
           </motion.h1>
-          
-          <motion.p 
-            className="text-xl md:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed"
+
+          <motion.p
+            className="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             We craft extraordinary digital experiences that transform businesses and captivate audiences through innovative technology solutions
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -135,7 +135,7 @@ function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 relative overflow-hidden group"
+              className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 relative overflow-hidden group"
             >
               <span className="relative z-10 flex items-center gap-2">
                 <Rocket size={20} />
@@ -144,7 +144,7 @@ function HeroSection() {
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             </motion.button>
-            
+
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -154,9 +154,9 @@ function HeroSection() {
             </motion.button>
           </motion.div>
         </motion.div>
-        
+
         {/* Scroll indicator */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -201,20 +201,20 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
   };
 
   const serviceColors = {
-    'mobile-app': { 
-      gradient: 'from-blue-600 to-cyan-600',
-      accent: 'blue',
-      particles: ['from-blue-400/30', 'from-cyan-400/30', 'from-indigo-400/30']
-    },
-    'website': { 
-      gradient: 'from-green-600 to-emerald-600',
-      accent: 'green',
-      particles: ['from-green-400/30', 'from-emerald-400/30', 'from-teal-400/30']
-    },
-    'custom-software': { 
-      gradient: 'from-purple-600 to-pink-600',
+    'mobile-app': {
+      gradient: 'from-purple-600 to-purple-700',
       accent: 'purple',
-      particles: ['from-purple-400/30', 'from-pink-400/30', 'from-violet-400/30']
+      particles: ['from-purple-400/30', 'from-purple-500/30', 'from-purple-600/30']
+    },
+    'website': {
+      gradient: 'from-emerald-600 to-emerald-700',
+      accent: 'emerald',
+      particles: ['from-emerald-400/30', 'from-emerald-500/30', 'from-emerald-600/30']
+    },
+    'custom-software': {
+      gradient: 'from-purple-500 to-emerald-500',
+      accent: 'gradient',
+      particles: ['from-purple-400/30', 'from-emerald-400/30', 'from-purple-500/30']
     },
   };
 
@@ -246,7 +246,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
         <div className={`absolute inset-0 bg-gradient-to-r ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl p-[2px]`}>
           <div className="bg-white rounded-3xl h-full w-full"></div>
         </div>
-        
+
         {/* Mouse follower effect */}
         <AnimatePresence>
           {isHovered && (
@@ -264,7 +264,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
             </motion.div>
           )}
         </AnimatePresence>
-        
+
         {/* Floating particles with physics */}
         <div className="absolute inset-0 overflow-hidden rounded-3xl">
           {colors.particles.map((particle, i) => (
@@ -289,15 +289,15 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
             />
           ))}
         </div>
-        
+
         <div className="relative z-20 p-8 h-full flex flex-col">
           {/* Icon with 3D effect */}
           <div className="text-center mb-8">
-            <motion.div 
+            <motion.div
               className={`relative w-28 h-28 bg-gradient-to-r ${colors.gradient} rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:shadow-3xl transition-all duration-500`}
-              whileHover={{ 
-                scale: 1.1, 
-                rotateY: 15, 
+              whileHover={{
+                scale: 1.1,
+                rotateY: 15,
                 rotateX: 15,
               }}
               style={{
@@ -307,23 +307,23 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
               {/* 3D depth layers */}
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-3xl transform translate-z-2"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/10 rounded-3xl"></div>
-              
+
               <motion.div
                 animate={{ rotateZ: isHovered ? 360 : 0 }}
                 transition={{ duration: 2, ease: "easeInOut" }}
               >
                 <IconComponent size={48} className="text-white relative z-10 drop-shadow-lg" />
               </motion.div>
-              
+
               {/* Glowing ring effect */}
-              <motion.div 
+              <motion.div
                 className={`absolute inset-0 bg-gradient-to-r ${colors.gradient} rounded-3xl opacity-0 group-hover:opacity-60 blur-md`}
                 animate={{ scale: isHovered ? [1, 1.2, 1] : 1 }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
             </motion.div>
-            
-            <motion.h3 
+
+            <motion.h3
               className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-300"
               whileHover={{ scale: 1.05 }}
             >
@@ -333,11 +333,11 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
               {service.description}
             </p>
           </div>
-          
+
           {/* Features with staggered reveal */}
           <div className="space-y-4 mb-8 flex-grow">
             <h4 className="font-semibold text-gray-900 flex items-center text-lg">
-              <motion.div 
+              <motion.div
                 className={`w-3 h-3 bg-gradient-to-r ${colors.gradient} rounded-full mr-3`}
                 animate={{ scale: isHovered ? [1, 1.3, 1] : 1 }}
                 transition={{ duration: 1, repeat: Infinity }}
@@ -346,15 +346,15 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
             </h4>
             <ul className="space-y-3">
               {service.features.map((feature: string, i: number) => (
-                <motion.li 
-                  key={i} 
+                <motion.li
+                  key={i}
                   className="flex items-start text-gray-700 group-hover:text-gray-800 transition-colors duration-300"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   whileHover={{ x: 5 }}
                 >
-                  <motion.div 
+                  <motion.div
                     className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center mr-3 mt-0.5"
                     whileHover={{ scale: 1.2, rotate: 360 }}
                     transition={{ duration: 0.3 }}
@@ -366,7 +366,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
               ))}
             </ul>
           </div>
-          
+
           {/* Enhanced CTA button */}
           <div className="mt-auto">
             <Link href={`/services/${service.category}`}>
@@ -380,9 +380,9 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
                   Explore Service
                   <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform duration-300" />
                 </span>
-                
+
                 {/* Animated shine effect */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "100%" }}
@@ -399,39 +399,39 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
 
 function ServicesGrid() {
   return (
-    <section className="py-32 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+    <section className="py-32 bg-gradient-to-br from-gray-50 via-white to-gray-50/30 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-purple-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-emerald-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full border border-blue-200/50 mb-8"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-100 to-emerald-100 rounded-full border border-purple-200/50 mb-8"
           >
-            <Target size={20} className="text-blue-600" />
-            <span className="text-sm font-medium text-blue-800">Our Expertise</span>
+            <Target size={20} className="text-purple-600" />
+            <span className="text-sm font-medium text-purple-800">Our Expertise</span>
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             className="text-5xl md:text-6xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gray-900 via-purple-800 to-emerald-800 bg-clip-text text-transparent">
               Transformative
             </span>
             <br />
             <span className="text-gray-900">Solutions</span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -440,7 +440,7 @@ function ServicesGrid() {
             We deliver cutting-edge digital solutions that push boundaries and create exceptional user experiences
           </motion.p>
         </div>
-        
+
         <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {services.map((service, index) => (
             <ServiceCard key={service.id} service={service} index={index} />
@@ -454,22 +454,22 @@ function ServicesGrid() {
 // Interactive process timeline
 function ProcessSection() {
   const [activeStep, setActiveStep] = useState(0);
-  
+
   const processSteps = [
     {
       step: '01',
       title: 'Discovery & Strategy',
       description: 'We dive deep into understanding your business goals, target audience, and project requirements through comprehensive research and strategic planning.',
       icon: Brain,
-      color: 'from-blue-500 to-blue-600',
+      color: 'from-purple-500 to-purple-600',
       details: ['Market Research', 'User Analysis', 'Technical Planning', 'Strategy Development']
     },
     {
-      step: '02', 
+      step: '02',
       title: 'Design & Prototyping',
       description: 'Our creative team crafts intuitive user interfaces and interactive prototypes that bring your vision to life with pixel-perfect precision.',
       icon: Palette,
-      color: 'from-purple-500 to-purple-600',
+      color: 'from-emerald-500 to-emerald-600',
       details: ['UI/UX Design', 'Interactive Prototypes', 'Design Systems', 'User Testing']
     },
     {
@@ -477,7 +477,7 @@ function ProcessSection() {
       title: 'Development & Integration',
       description: 'Using cutting-edge technologies and best practices, we build robust, scalable solutions with clean, maintainable code architecture.',
       icon: Code,
-      color: 'from-green-500 to-green-600',
+      color: 'from-purple-500 to-emerald-500',
       details: ['Frontend Development', 'Backend Architecture', 'API Integration', 'Database Design']
     },
     {
@@ -485,16 +485,16 @@ function ProcessSection() {
       title: 'Testing & Deployment',
       description: 'Rigorous quality assurance testing ensures flawless performance, followed by seamless deployment and ongoing support.',
       icon: Rocket,
-      color: 'from-orange-500 to-orange-600',
+      color: 'from-emerald-500 to-purple-500',
       details: ['Quality Assurance', 'Performance Testing', 'Deployment', 'Ongoing Support']
     },
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
+    <section className="py-32 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white relative overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-600/10 via-emerald-600/10 to-purple-600/10"></div>
         {[...Array(50)].map((_, i) => (
           <motion.div
             key={i}
@@ -515,7 +515,7 @@ function ProcessSection() {
           />
         ))}
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
           <motion.div
@@ -524,23 +524,23 @@ function ProcessSection() {
             transition={{ duration: 0.8 }}
             className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8"
           >
-            <Settings size={20} className="text-blue-400" />
+            <Settings size={20} className="text-purple-400" />
             <span className="text-sm font-medium">Our Methodology</span>
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             className="text-5xl md:text-6xl font-bold mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-purple-200 to-emerald-200 bg-clip-text text-transparent">
               Our Process
             </span>
           </motion.h2>
-          
-          <motion.p 
-            className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed"
+
+          <motion.p
+            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -548,7 +548,7 @@ function ProcessSection() {
             A proven methodology that transforms ideas into exceptional digital experiences
           </motion.p>
         </div>
-        
+
         <div className="max-w-7xl mx-auto">
           {/* Interactive timeline */}
           <div className="grid lg:grid-cols-4 gap-8 mb-16">
@@ -562,59 +562,56 @@ function ProcessSection() {
                 className="text-center group cursor-pointer"
                 onMouseEnter={() => setActiveStep(index)}
               >
-                <div className={`relative p-8 rounded-3xl border transition-all duration-500 ${
-                  activeStep === index 
-                    ? 'bg-white/10 border-white/30 backdrop-blur-sm' 
-                    : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
-                }`}>
+                <div className={`relative p-8 rounded-3xl border transition-all duration-500 ${activeStep === index
+                  ? 'bg-white/10 border-white/30 backdrop-blur-sm'
+                  : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
+                  }`}>
                   {/* Step connector line */}
                   {index < processSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-1/2 left-full w-8 h-0.5 bg-gradient-to-r from-white/30 to-transparent transform -translate-y-1/2"></div>
+                    <div className="hidden lg:block absolute top-1/2 left-full w-8 h-0.5 bg-gradient-to-r from-purple-400/30 to-transparent transform -translate-y-1/2"></div>
                   )}
-                  
-                  <motion.div 
+
+                  <motion.div
                     className={`w-20 h-20 bg-gradient-to-r ${step.color} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl`}
                     whileHover={{ scale: 1.1, rotateY: 15 }}
-                    animate={{ 
+                    animate={{
                       scale: activeStep === index ? 1.1 : 1,
-                      rotateY: activeStep === index ? 15 : 0 
+                      rotateY: activeStep === index ? 15 : 0
                     }}
                     transition={{ duration: 0.3 }}
                   >
                     <step.icon size={32} className="text-white" />
-                    
+
                     {/* Glowing effect */}
-                    <motion.div 
+                    <motion.div
                       className={`absolute inset-0 bg-gradient-to-r ${step.color} rounded-2xl blur-md`}
-                      animate={{ 
+                      animate={{
                         opacity: activeStep === index ? 0.6 : 0,
-                        scale: activeStep === index ? 1.2 : 1 
+                        scale: activeStep === index ? 1.2 : 1
                       }}
                       transition={{ duration: 0.3 }}
                     />
                   </motion.div>
-                  
+
                   {/* Step number */}
-                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-sm font-bold">
+                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-r from-purple-500 to-emerald-500 rounded-full flex items-center justify-center text-sm font-bold">
                     {step.step}
                   </div>
-                  
-                  <h3 className={`text-xl font-bold mb-4 transition-all duration-300 ${
-                    activeStep === index ? 'text-white' : 'text-blue-200'
-                  }`}>
+
+                  <h3 className={`text-xl font-bold mb-4 transition-all duration-300 ${activeStep === index ? 'text-white' : 'text-gray-300'
+                    }`}>
                     {step.title}
                   </h3>
-                  
-                  <p className={`text-sm leading-relaxed transition-all duration-300 ${
-                    activeStep === index ? 'text-blue-100' : 'text-blue-300'
-                  }`}>
+
+                  <p className={`text-sm leading-relaxed transition-all duration-300 ${activeStep === index ? 'text-gray-200' : 'text-gray-400'
+                    }`}>
                     {step.description}
                   </p>
                 </div>
               </motion.div>
             ))}
           </div>
-          
+
           {/* Active step details */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -630,10 +627,10 @@ function ProcessSection() {
                   <h3 className="text-3xl font-bold mb-4 text-white">
                     {processSteps[activeStep].title}
                   </h3>
-                  <p className="text-blue-100 text-lg leading-relaxed mb-6">
+                  <p className="text-gray-300 text-lg leading-relaxed mb-6">
                     {processSteps[activeStep].description}
                   </p>
-                  
+
                   <div className="grid grid-cols-2 gap-4">
                     {processSteps[activeStep].details.map((detail, i) => (
                       <motion.div
@@ -641,15 +638,15 @@ function ProcessSection() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: i * 0.1 }}
-                        className="flex items-center gap-3 text-blue-200"
+                        className="flex items-center gap-3 text-gray-300"
                       >
-                        <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
+                        <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-emerald-400 rounded-full"></div>
                         <span className="text-sm font-medium">{detail}</span>
                       </motion.div>
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="relative">
                   <motion.div
                     className={`w-64 h-64 bg-gradient-to-r ${processSteps[activeStep].color} rounded-3xl mx-auto flex items-center justify-center shadow-2xl`}
@@ -657,7 +654,7 @@ function ProcessSection() {
                     transition={{ duration: 4, repeat: Infinity }}
                   >
                     {React.createElement(processSteps[activeStep].icon, { size: 80, className: "text-white" })}
-                    
+
                     {/* Floating elements */}
                     {[...Array(6)].map((_, i) => (
                       <motion.div
@@ -692,7 +689,7 @@ function ProcessSection() {
 // Advanced tech stack with 3D carousel
 function TechStackSection() {
   const [selectedCategory, setSelectedCategory] = useState('frontend');
-  
+
   const techCategories = {
     frontend: {
       title: 'Frontend',
@@ -747,7 +744,7 @@ function TechStackSection() {
         <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-green-400/10 to-blue-400/10 rounded-full blur-3xl"></div>
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
           <motion.div
@@ -759,8 +756,8 @@ function TechStackSection() {
             <Lightbulb size={20} className="text-blue-600" />
             <span className="text-sm font-medium text-blue-800">Technology Stack</span>
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             className="text-5xl md:text-6xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -772,8 +769,8 @@ function TechStackSection() {
             <br />
             <span className="text-gray-900">Technologies</span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -782,7 +779,7 @@ function TechStackSection() {
             We leverage the latest technologies and frameworks to build scalable, performant solutions
           </motion.p>
         </div>
-        
+
         {/* Category selector */}
         <div className="flex flex-wrap justify-center gap-4 mb-16">
           {Object.entries(techCategories).map(([key, category]) => (
@@ -791,18 +788,17 @@ function TechStackSection() {
               onClick={() => setSelectedCategory(key)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`flex items-center gap-3 px-6 py-4 rounded-2xl font-semibold transition-all duration-300 ${
-                selectedCategory === key
-                  ? `bg-gradient-to-r ${category.color} text-white shadow-lg`
-                  : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
-              }`}
+              className={`flex items-center gap-3 px-6 py-4 rounded-2xl font-semibold transition-all duration-300 ${selectedCategory === key
+                ? `bg-gradient-to-r ${category.color} text-white shadow-lg`
+                : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                }`}
             >
               <category.icon size={20} />
               {category.title}
             </motion.button>
           ))}
         </div>
-        
+
         {/* Tech grid with 3D effects */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -819,18 +815,18 @@ function TechStackSection() {
                 initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ 
-                  y: -10, 
-                  rotateY: 10, 
+                whileHover={{
+                  y: -10,
+                  rotateY: 10,
                   rotateX: 5,
-                  scale: 1.05 
+                  scale: 1.05
                 }}
                 className="group cursor-pointer perspective-1000"
               >
                 <div className="relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 group-hover:border-transparent overflow-hidden">
                   {/* Animated background */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${techCategories[selectedCategory as keyof typeof techCategories].color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`}></div>
-                  
+
                   {/* Floating particles */}
                   <div className="absolute inset-0 overflow-hidden rounded-3xl">
                     {[...Array(3)].map((_, i) => (
@@ -853,41 +849,41 @@ function TechStackSection() {
                       />
                     ))}
                   </div>
-                  
+
                   <div className="relative z-10 text-center">
                     {/* Tech icon with 3D effect */}
-                    <motion.div 
+                    <motion.div
                       className={`w-24 h-24 bg-gradient-to-r ${techCategories[selectedCategory as keyof typeof techCategories].color} rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl`}
-                      whileHover={{ 
-                        rotateY: 15, 
+                      whileHover={{
+                        rotateY: 15,
                         rotateX: 15,
-                        scale: 1.1 
+                        scale: 1.1
                       }}
                       style={{ transformStyle: "preserve-3d" }}
                     >
                       <span className="text-3xl transform translate-z-4">{tech.icon}</span>
-                      
+
                       {/* 3D depth effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl transform translate-z-2"></div>
-                      
+
                       {/* Glowing ring effect */}
-                      <motion.div 
+                      <motion.div
                         className={`absolute inset-0 bg-gradient-to-r ${techCategories[selectedCategory as keyof typeof techCategories].color} rounded-3xl opacity-0 group-hover:opacity-60 blur-md`}
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
                       />
                     </motion.div>
-                    
+
                     <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-300">
                       {tech.name}
                     </h3>
-                    
+
                     <p className="text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300">
                       {tech.description}
                     </p>
-                    
+
                     {/* Animated underline */}
-                    <motion.div 
+                    <motion.div
                       className={`w-0 h-0.5 bg-gradient-to-r ${techCategories[selectedCategory as keyof typeof techCategories].color} mx-auto mt-4 group-hover:w-full transition-all duration-500`}
                     />
                   </div>
@@ -896,7 +892,7 @@ function TechStackSection() {
             ))}
           </motion.div>
         </AnimatePresence>
-        
+
         {/* Stats section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -939,7 +935,7 @@ function CTASection() {
   };
 
   return (
-    <section 
+    <section
       className="py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white relative overflow-hidden"
       onMouseMove={handleMouseMove}
     >
@@ -950,7 +946,7 @@ function CTASection() {
           background: `radial-gradient(600px circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(59, 130, 246, 0.15), transparent 40%)`,
         }}
       />
-      
+
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-20">
         {[...Array(30)].map((_, i) => (
@@ -973,7 +969,7 @@ function CTASection() {
           />
         ))}
       </div>
-      
+
       {/* Geometric shapes */}
       <div className="absolute inset-0">
         <motion.div
@@ -987,7 +983,7 @@ function CTASection() {
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
       </div>
-      
+
       <div className="container mx-auto px-4 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -1005,8 +1001,8 @@ function CTASection() {
             <Sparkles size={20} className="text-yellow-400" />
             <span className="text-sm font-medium">Ready to Transform?</span>
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1020,8 +1016,8 @@ function CTASection() {
               Something Amazing
             </span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1029,7 +1025,7 @@ function CTASection() {
           >
             Ready to transform your ideas into extraordinary digital experiences? Let&apos;s collaborate and create something remarkable together.
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1047,9 +1043,9 @@ function CTASection() {
                   Start Your Project
                   <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
-                
+
                 {/* Animated shine effect */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "100%" }}
@@ -1057,7 +1053,7 @@ function CTASection() {
                 />
               </motion.button>
             </Link>
-            
+
             <Link href="/portfolio">
               <motion.button
                 whileHover={{ scale: 1.05, y: -3 }}
@@ -1071,7 +1067,7 @@ function CTASection() {
               </motion.button>
             </Link>
           </motion.div>
-          
+
           {/* Enhanced trust indicators with animations */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -1093,7 +1089,7 @@ function CTASection() {
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/15 transition-all duration-300 group cursor-pointer"
               >
-                <motion.div 
+                <motion.div
                   className={`w-12 h-12 bg-gradient-to-r ${item.color} rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
