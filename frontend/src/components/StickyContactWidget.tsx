@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Mail, MessageCircle, Plus, X } from 'lucide-react';
+import { Phone, Mail, MessageCircle, X } from 'lucide-react';
 
 interface ContactInfo {
     phone: string;
@@ -16,9 +16,9 @@ interface StickyContactWidgetProps {
 
 const StickyContactWidget: React.FC<StickyContactWidgetProps> = ({
     contactInfo = {
-        phone: '+91 80974 76088',
-        email: 'contact@inostratechnologies.com',
-        whatsapp: '+91 80974 76088'
+        phone: '+91 8097476088',
+        email: 'contact@inostraatechnologies.com',
+        whatsapp: '+91 8097476088'
     }
 }) => {
     const [isExpanded, setIsExpanded] = useState(false);

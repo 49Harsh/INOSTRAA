@@ -47,7 +47,7 @@ const Footer = () => {
                   <div className="w-10 h-10 bg-purple-400/20 rounded-lg flex items-center justify-center group-hover:bg-purple-400/40 transition-colors">
                     <MapPin size={18} />
                   </div>
-                  <span>India</span>
+                  <span>Jail Road Tilak Nagar Delhi-110058</span>
                 </div>
               </div>
             </div>

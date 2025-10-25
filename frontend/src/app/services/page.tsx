@@ -92,7 +92,7 @@ function HeroSection() {
           className="max-w-5xl mx-auto"
         >
           {/* Animated badge */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -100,7 +100,7 @@ function HeroSection() {
           >
             <Sparkles size={20} className="text-yellow-400" />
             <span className="text-sm font-medium">Premium Digital Solutions</span>
-          </motion.div>
+          </motion.div> */}
 
           <motion.h1
             className="text-6xl md:text-8xl font-bold mb-8 leading-tight"
@@ -132,7 +132,7 @@ function HeroSection() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
-            <motion.button
+            {/* <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 relative overflow-hidden group"
@@ -143,7 +143,7 @@ function HeroSection() {
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-            </motion.button>
+            </motion.button> */}
 
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
