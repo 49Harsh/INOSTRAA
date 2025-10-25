@@ -6,7 +6,7 @@ import { WebsiteContent } from '@/types/websiteContent';
  */
 const websiteContent: WebsiteContent = {
   companyInfo: {
-    name: "Inostra Technologies",
+    name: "Inostraa Technologies",
     tagline: "Empowering Businesses Through Digital Excellence",
     visionMission: {
       vision: "To become a trusted global name in IT by continuously evolving with technology and delivering digital excellence that drives client success.",
