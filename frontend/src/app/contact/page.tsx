@@ -6,6 +6,7 @@ import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'luci
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { useInView } from 'react-intersection-observer';
+import { ContactService } from '@/services/contactService';
 
 interface FormData {
   name: string;
@@ -84,6 +85,7 @@ function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string>('');
 
   const services = [
     'Mobile App Development',
@@ -136,25 +138,40 @@ function ContactForm() {
     }
 
     setIsSubmitting(true);
+    setSubmitError('');
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        service: '',
-        budget: '',
-        message: '',
+    try {
+      const result = await ContactService.submitContactForm({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        service: formData.service,
+        budget: formData.budget,
+        message: formData.message,
       });
-    }, 3000);
+
+      if (result.success) {
+        setIsSubmitted(true);
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            service: '',
+            budget: '',
+            message: '',
+          });
+        }, 5000);
+      } else {
+        setSubmitError(result.error || 'Failed to submit form. Please try again.');
+      }
+    } catch (error) {
+      setSubmitError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -186,6 +203,16 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {submitError && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-700"
+        >
+          <AlertCircle size={20} />
+          <span>{submitError}</span>
+        </motion.div>
+      )}
       <div className="grid md:grid-cols-2 gap-6">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
