@@ -13,106 +13,78 @@ const serviceData = websiteContent.services.find(service => service.category ===
 const mobileProjects = [
   {
     id: 1,
-    title: "FitTracker Pro",
-    description: "Comprehensive fitness tracking app with workout plans, nutrition tracking, and social features",
+    title: "Vedaz User App",
+    description: "Comprehensive astrology mobile app for users to book consultations, view horoscopes, and access astrology services",
     image: "/api/placeholder/300/500",
     appStoreUrl: "#",
     playStoreUrl: "#",
-    category: "Health & Fitness",
+    category: "Astrology",
     platforms: ["iOS", "Android"],
-    technologies: ["Flutter", "Firebase", "Node.js", "MongoDB"],
-    features: ["Workout Tracking", "Nutrition Plans", "Social Sharing", "Progress Analytics"],
-    downloads: "50K+",
-    rating: 4.8,
-    completedDate: "2024-01-20",
-    client: "FitLife Solutions",
-    location: "New York, USA"
+    technologies: ["React Native", "Node.js", "MongoDB", "Firebase"],
+    features: ["Horoscope Reading", "Consultation Booking", "Chat Support", "Payment Gateway"],
+    downloads: "25K+",
+    rating: 4.7,
+    completedDate: "15/11/2023",
+    client: "Vedaz Astrology"
   },
   {
     id: 2,
-    title: "ShopEasy - E-commerce App",
-    description: "Modern e-commerce mobile app with AR try-on features and personalized recommendations",
+    title: "Vedaz Astrologer App",
+    description: "Professional astrologer app with live streaming capabilities using Agora SDK for real-time consultations and client management",
     image: "/api/placeholder/300/500",
     appStoreUrl: "#",
     playStoreUrl: "#",
-    category: "E-commerce",
+    category: "Astrology Professional",
     platforms: ["iOS", "Android"],
-    technologies: ["React Native", "Node.js", "PostgreSQL", "AWS"],
-    features: ["AR Try-On", "Payment Gateway", "Push Notifications", "Order Tracking"],
-    downloads: "100K+",
-    rating: 4.6,
-    completedDate: "2024-02-15",
-    client: "ShopEasy Ltd",
-    location: "London, UK"
+    technologies: ["React Native", "Agora SDK", "Node.js", "MongoDB", "Socket.io"],
+    features: ["Live Video Streaming", "Client Management", "Appointment Scheduling", "Real-time Chat"],
+    downloads: "10K+",
+    rating: 4.8,
+    completedDate: "20/12/2023",
+    client: "Vedaz Astrology"
   },
   {
     id: 3,
-    title: "LearningHub - Education App",
-    description: "Interactive learning platform with video courses, quizzes, and progress tracking",
+    title: "Parental Control App",
+    description: "Advanced parental control application for monitoring and managing children's device usage with comprehensive safety features",
     image: "/api/placeholder/300/500",
     appStoreUrl: "#",
     playStoreUrl: "#",
-    category: "Education",
+    category: "Parental Control",
     platforms: ["iOS", "Android"],
-    technologies: ["Flutter", "Laravel", "MySQL", "AWS"],
-    features: ["Video Streaming", "Interactive Quizzes", "Progress Tracking", "Offline Content"],
-    downloads: "75K+",
-    rating: 4.9,
-    completedDate: "2024-03-01",
-    client: "EduTech Academy",
-    location: "Toronto, Canada"
-  },
-  {
-    id: 4,
-    title: "FoodieGo - Food Delivery",
-    description: "On-demand food delivery app with real-time tracking and multiple payment options",
-    image: "/api/placeholder/300/500",
-    appStoreUrl: "#",
-    playStoreUrl: "#",
-    category: "Food & Drink",
-    platforms: ["iOS", "Android"],
-    technologies: ["React Native", "Node.js", "MongoDB", "Socket.io"],
-    features: ["Real-time Tracking", "Multiple Payments", "Restaurant Management", "Delivery Analytics"],
-    downloads: "200K+",
-    rating: 4.7,
-    completedDate: "2024-03-20",
-    client: "FoodieGo Inc",
-    location: "Mumbai, India"
-  },
-  {
-    id: 5,
-    title: "TravelMate - Trip Planner",
-    description: "Comprehensive travel planning app with booking, itinerary management, and local guides",
-    image: "/api/placeholder/300/500",
-    appStoreUrl: "#",
-    playStoreUrl: "#",
-    category: "Travel",
-    platforms: ["iOS", "Android"],
-    technologies: ["Flutter", "Firebase", "Google Maps API", "Stripe"],
-    features: ["Trip Planning", "Hotel Booking", "Local Guides", "Expense Tracking"],
-    downloads: "30K+",
-    rating: 4.5,
-    completedDate: "2024-04-10",
-    client: "TravelMate Solutions",
-    location: "Dubai, UAE"
-  },
-  {
-    id: 6,
-    title: "MediCare - Health Monitor",
-    description: "Health monitoring app with medication reminders, appointment scheduling, and health records",
-    image: "/api/placeholder/300/500",
-    appStoreUrl: "#",
-    playStoreUrl: "#",
-    category: "Medical",
-    platforms: ["iOS", "Android"],
-    technologies: ["React Native", "Node.js", "PostgreSQL", "AWS"],
-    features: ["Medication Reminders", "Health Records", "Doctor Consultation", "Vital Monitoring"],
-    downloads: "40K+",
-    rating: 4.8,
-    completedDate: "2024-04-25",
-    client: "MediCare Health",
-    location: "Sydney, Australia"
+    technologies: ["React Native", "Firebase", "Node.js", "SQLite"],
+    features: ["Screen Time Control", "App Blocking", "Location Tracking", "Usage Reports"],
+    downloads: "15K+",
+    rating: 4.6,
+    completedDate: "10/01/2024",
+    client: "SafeKids Solutions"
   }
+
+  // Commented out previous projects:
+  // {
+  //   id: 4,
+  //   title: "FitTracker Pro",
+  //   description: "Comprehensive fitness tracking app with workout plans, nutrition tracking, and social features",
+  //   category: "Health & Fitness",
+  //   technologies: ["Flutter", "Firebase", "Node.js", "MongoDB"],
+  //   features: ["Workout Tracking", "Nutrition Plans", "Social Sharing", "Progress Analytics"]
+  // },
+  // {
+  //   id: 5,
+  //   title: "ShopEasy - E-commerce App", 
+  //   description: "Modern e-commerce mobile app with AR try-on features and personalized recommendations",
+  //   category: "E-commerce",
+  //   technologies: ["React Native", "Node.js", "PostgreSQL", "AWS"],
+  //   features: ["AR Try-On", "Payment Gateway", "Push Notifications", "Order Tracking"]
+  // },
+  // {
+  //   id: 6,
+  //   title: "LearningHub - Education App",
+  //   description: "Interactive learning platform with video courses, quizzes, and progress tracking", 
+  //   category: "Education",
+  //   technologies: ["Flutter", "Laravel", "MySQL", "AWS"],
+  //   features: ["Video Streaming", "Interactive Quizzes", "Progress Tracking", "Offline Content"]
+  // }
 ];
 
 function HeroSection() {
@@ -121,13 +93,13 @@ function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-30"
         style={{ y }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-cyan-600/20"></div>
       </motion.div>
-      
+
       {/* Floating phone mockups */}
       <div className="absolute inset-0">
         {[...Array(15)].map((_, i) => (
@@ -152,7 +124,7 @@ function HeroSection() {
           </motion.div>
         ))}
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10 text-center text-white">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -169,8 +141,8 @@ function HeroSection() {
             <Smartphone size={20} className="text-purple-400" />
             <span className="text-sm font-medium">Mobile App Development Services</span>
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             className="text-6xl md:text-8xl font-bold mb-8 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -184,8 +156,8 @@ function HeroSection() {
               Development
             </span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl md:text-2xl mb-12 text-purple-100 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -193,7 +165,7 @@ function HeroSection() {
           >
             {serviceData?.description}
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -212,7 +184,7 @@ function HeroSection() {
                 </span>
               </motion.button>
             </Link>
-            
+
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -266,7 +238,7 @@ function FeaturesSection() {
     <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -274,7 +246,7 @@ function FeaturesSection() {
           >
             Mobile App Development Features
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -283,7 +255,7 @@ function FeaturesSection() {
             We create mobile apps that deliver exceptional user experiences across all platforms
           </motion.p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div
@@ -342,7 +314,7 @@ function ServiceDetailsSection() {
               ))}
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -379,7 +351,7 @@ function ProjectsSection() {
     <section id="projects" className="py-24 bg-gradient-to-br from-gray-50 to-purple-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -387,7 +359,7 @@ function ProjectsSection() {
           >
             Our Mobile App Portfolio
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -396,7 +368,7 @@ function ProjectsSection() {
             Discover the innovative mobile applications we&apos;ve created for various industries
           </motion.p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {mobileProjects.map((project, index) => (
             <motion.div
@@ -414,7 +386,7 @@ function ProjectsSection() {
                     <Smartphone size={64} className="text-white/60" />
                   </div>
                   <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
+
                   {/* App Store Badges */}
                   <div className="absolute top-4 right-4 flex gap-2">
                     {project.platforms.includes('iOS') && (
@@ -429,7 +401,7 @@ function ProjectsSection() {
                     )}
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-medium text-purple-600 bg-purple-50 px-3 py-1 rounded-full">
@@ -440,15 +412,15 @@ function ProjectsSection() {
                       <span className="text-sm font-medium text-gray-700">{project.rating}</span>
                     </div>
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
                     {project.title}
                   </h3>
-                  
+
                   <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                     {project.description}
                   </p>
-                  
+
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                     <div className="flex items-center gap-1">
                       <Download size={14} />
@@ -459,7 +431,7 @@ function ProjectsSection() {
                       <span>{new Date(project.completedDate).toLocaleDateString()}</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.slice(0, 3).map((tech, i) => (
                       <span key={i} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
@@ -472,7 +444,7 @@ function ProjectsSection() {
                       </span>
                     )}
                   </div>
-                  
+
                   {selectedProject === project.id && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
@@ -490,16 +462,16 @@ function ProjectsSection() {
                           </li>
                         ))}
                       </ul>
-                      
+
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 text-sm text-gray-600">
                           <Users size={14} />
                           <span>Client: {project.client}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                        {/* <div className="flex items-center gap-2 text-sm text-gray-600">
                           <MapPin size={14} />
                           <span>{project.location}</span>
-                        </div>
+                        </div> */}
                       </div>
                     </motion.div>
                   )}
@@ -517,7 +489,7 @@ function CTASection() {
   return (
     <section className="py-24 bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900 text-white">
       <div className="container mx-auto px-4 text-center">
-        <motion.h2 
+        <motion.h2
           className="text-4xl md:text-5xl font-bold mb-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -525,7 +497,7 @@ function CTASection() {
         >
           Ready to Launch Your Mobile App?
         </motion.h2>
-        <motion.p 
+        <motion.p
           className="text-xl text-purple-100 mb-12 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -533,7 +505,7 @@ function CTASection() {
         >
           Transform your innovative ideas into powerful mobile applications that users will love
         </motion.p>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -552,7 +524,7 @@ function CTASection() {
               </span>
             </motion.button>
           </Link>
-          
+
           <Link href="/services">
             <motion.button
               whileHover={{ scale: 1.05, y: -3 }}

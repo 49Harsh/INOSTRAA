@@ -22,91 +22,63 @@ const softwareProjects = [
     features: ["Inventory Management", "HR Module", "Financial Reporting", "Real-time Analytics"],
     users: "500+ Users",
     modules: 12,
-    completedDate: "2024-01-10",
+    completedDate: "10/01/2024",
     client: "ManufacturePro Ltd",
-    location: "Frankfurt, Germany",
     industry: "Manufacturing"
   },
   {
     id: 2,
-    title: "Hospital Management System",
-    description: "Complete healthcare management solution with patient records, appointment scheduling, and billing integration",
+    title: "AI Interview Help Software",
+    description: "Desktop application built with Electron.js that provides AI-powered interview preparation with mock interviews, question analysis, and performance feedback",
     image: "/api/placeholder/600/400",
     demoUrl: "#",
-    category: "Healthcare Software",
-    technologies: ["Laravel", "Vue.js", "MySQL", "AWS"],
-    features: ["Patient Records", "Appointment Scheduling", "Billing System", "Medical Reports"],
-    users: "1000+ Users",
-    modules: 8,
-    completedDate: "2024-02-05",
-    client: "City General Hospital",
-    location: "Toronto, Canada",
-    industry: "Healthcare"
-  },
-  {
-    id: 3,
-    title: "Financial Analytics Platform",
-    description: "Advanced financial analytics and reporting platform with real-time market data and predictive modeling",
-    image: "/api/placeholder/600/400",
-    demoUrl: "#",
-    category: "Financial Software",
-    technologies: ["Python", "React", "PostgreSQL", "AWS"],
-    features: ["Real-time Analytics", "Predictive Modeling", "Risk Assessment", "Custom Reports"],
-    users: "200+ Users",
+    category: "AI Software",
+    technologies: ["Electron.js", "React", "Node.js", "OpenAI API", "SQLite"],
+    features: ["AI Mock Interviews", "Question Analysis", "Performance Feedback", "Interview Recording"],
+    users: "100+ Users",
     modules: 6,
-    completedDate: "2024-02-28",
-    client: "FinanceMax Corp",
-    location: "New York, USA",
-    industry: "Finance"
-  },
-  {
-    id: 4,
-    title: "School Management System",
-    description: "Comprehensive school administration system with student records, gradebook, and parent communication portal",
-    image: "/api/placeholder/600/400",
-    demoUrl: "#",
-    category: "Education Software",
-    technologies: ["Next.js", "Node.js", "MongoDB", "Socket.io"],
-    features: ["Student Management", "Gradebook", "Parent Portal", "Attendance Tracking"],
-    users: "2000+ Users",
-    modules: 10,
-    completedDate: "2024-03-15",
-    client: "International School",
-    location: "Singapore",
-    industry: "Education"
-  },
-  {
-    id: 5,
-    title: "CRM & Sales Platform",
-    description: "Customer relationship management system with sales pipeline, lead tracking, and automated marketing",
-    image: "/api/placeholder/600/400",
-    demoUrl: "#",
-    category: "CRM Software",
-    technologies: ["React", "Laravel", "MySQL", "Redis"],
-    features: ["Lead Management", "Sales Pipeline", "Email Automation", "Performance Analytics"],
-    users: "300+ Users",
-    modules: 7,
-    completedDate: "2024-04-02",
-    client: "SalesForce Pro",
-    location: "Sydney, Australia",
-    industry: "Sales & Marketing"
-  },
-  {
-    id: 6,
-    title: "Logistics Management System",
-    description: "End-to-end logistics and supply chain management platform with route optimization and tracking",
-    image: "/api/placeholder/600/400",
-    demoUrl: "#",
-    category: "Logistics Software",
-    technologies: ["Vue.js", "Node.js", "MongoDB", "Google Maps API"],
-    features: ["Route Optimization", "Package Tracking", "Fleet Management", "Delivery Analytics"],
-    users: "150+ Users",
-    modules: 9,
-    completedDate: "2024-04-18",
-    client: "LogiFlow Solutions",
-    location: "Mumbai, India",
-    industry: "Logistics"
+    completedDate: "15/03/2024",
+    client: "CareerBoost Solutions",
+    industry: "Education & Career"
   }
+
+  // Commented out previous projects:
+  // {
+  //   id: 3,
+  //   title: "Hospital Management System",
+  //   description: "Complete healthcare management solution with patient records, appointment scheduling, and billing integration",
+  //   category: "Healthcare Software",
+  //   technologies: ["Laravel", "Vue.js", "MySQL", "AWS"],
+  //   features: ["Patient Records", "Appointment Scheduling", "Billing System", "Medical Reports"],
+  //   industry: "Healthcare"
+  // },
+  // {
+  //   id: 4,
+  //   title: "Financial Analytics Platform",
+  //   description: "Advanced financial analytics and reporting platform with real-time market data and predictive modeling",
+  //   category: "Financial Software", 
+  //   technologies: ["Python", "React", "PostgreSQL", "AWS"],
+  //   features: ["Real-time Analytics", "Predictive Modeling", "Risk Assessment", "Custom Reports"],
+  //   industry: "Finance"
+  // },
+  // {
+  //   id: 5,
+  //   title: "School Management System",
+  //   description: "Comprehensive school administration system with student records, gradebook, and parent communication portal",
+  //   category: "Education Software",
+  //   technologies: ["Next.js", "Node.js", "MongoDB", "Socket.io"],
+  //   features: ["Student Management", "Gradebook", "Parent Portal", "Attendance Tracking"],
+  //   industry: "Education"
+  // },
+  // {
+  //   id: 6,
+  //   title: "CRM & Sales Platform",
+  //   description: "Customer relationship management system with sales pipeline, lead tracking, and automated marketing",
+  //   category: "CRM Software",
+  //   technologies: ["React", "Laravel", "MySQL", "Redis"],
+  //   features: ["Lead Management", "Sales Pipeline", "Email Automation", "Performance Analytics"],
+  //   industry: "Sales & Marketing"
+  // }
 ];
 
 function HeroSection() {
@@ -115,13 +87,13 @@ function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-blue-900">
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-30"
         style={{ y }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-gray-600/20 via-blue-600/20 to-purple-600/20"></div>
       </motion.div>
-      
+
       {/* Floating code elements */}
       <div className="absolute inset-0">
         {[Code, Database, Settings, Monitor, Cloud, Cog].map((Icon, i) => (
@@ -146,7 +118,7 @@ function HeroSection() {
           </motion.div>
         ))}
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10 text-center text-white">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -163,8 +135,8 @@ function HeroSection() {
             <Code size={20} className="text-gray-400" />
             <span className="text-sm font-medium">Custom Software Development Services</span>
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             className="text-6xl md:text-8xl font-bold mb-8 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -178,8 +150,8 @@ function HeroSection() {
               Development
             </span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl md:text-2xl mb-12 text-gray-100 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -187,7 +159,7 @@ function HeroSection() {
           >
             {serviceData?.description}
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -206,7 +178,7 @@ function HeroSection() {
                 </span>
               </motion.button>
             </Link>
-            
+
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -260,7 +232,7 @@ function FeaturesSection() {
     <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -268,7 +240,7 @@ function FeaturesSection() {
           >
             Custom Software Features
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -277,7 +249,7 @@ function FeaturesSection() {
             We build enterprise-grade software solutions that scale with your business
           </motion.p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div
@@ -336,7 +308,7 @@ function ServiceDetailsSection() {
               ))}
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -373,7 +345,7 @@ function ProjectsSection() {
     <section id="projects" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -381,7 +353,7 @@ function ProjectsSection() {
           >
             Our Software Solutions
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -390,7 +362,7 @@ function ProjectsSection() {
             Explore our portfolio of custom software solutions across various industries
           </motion.p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {softwareProjects.map((project, index) => (
             <motion.div
@@ -408,7 +380,7 @@ function ProjectsSection() {
                     <Monitor size={48} className="text-white/60" />
                   </div>
                   <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
+
                   {/* Industry Badge */}
                   <div className="absolute top-4 right-4">
                     <span className="bg-black/70 text-white text-xs px-3 py-1 rounded-full">
@@ -416,7 +388,7 @@ function ProjectsSection() {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-medium text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
@@ -427,15 +399,15 @@ function ProjectsSection() {
                       <span className="text-sm text-gray-600">{project.users}</span>
                     </div>
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                     {project.title}
                   </h3>
-                  
+
                   <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                     {project.description}
                   </p>
-                  
+
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                     <div className="flex items-center gap-1">
                       <Settings size={14} />
@@ -446,7 +418,7 @@ function ProjectsSection() {
                       <span>{new Date(project.completedDate).toLocaleDateString()}</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.slice(0, 3).map((tech, i) => (
                       <span key={i} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
@@ -459,7 +431,7 @@ function ProjectsSection() {
                       </span>
                     )}
                   </div>
-                  
+
                   {selectedProject === project.id && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
@@ -477,16 +449,16 @@ function ProjectsSection() {
                           </li>
                         ))}
                       </ul>
-                      
+
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 text-sm text-gray-600">
                           <Users size={14} />
                           <span>Client: {project.client}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                        {/* <div className="flex items-center gap-2 text-sm text-gray-600">
                           <MapPin size={14} />
                           <span>{project.location}</span>
-                        </div>
+                        </div> */}
                       </div>
                     </motion.div>
                   )}
@@ -504,7 +476,7 @@ function CTASection() {
   return (
     <section className="py-24 bg-gradient-to-r from-gray-900 via-slate-900 to-blue-900 text-white">
       <div className="container mx-auto px-4 text-center">
-        <motion.h2 
+        <motion.h2
           className="text-4xl md:text-5xl font-bold mb-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -512,7 +484,7 @@ function CTASection() {
         >
           Ready to Build Custom Software?
         </motion.h2>
-        <motion.p 
+        <motion.p
           className="text-xl text-gray-100 mb-12 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -520,7 +492,7 @@ function CTASection() {
         >
           Let&apos;s create a powerful software solution that streamlines your business processes
         </motion.p>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -539,7 +511,7 @@ function CTASection() {
               </span>
             </motion.button>
           </Link>
-          
+
           <Link href="/services">
             <motion.button
               whileHover={{ scale: 1.05, y: -3 }}

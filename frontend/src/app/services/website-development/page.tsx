@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Globe, CheckCircle, Star, Code, Palette, Search, Smartphone, Shield, Zap, ExternalLink, Calendar, MapPin, Users } from 'lucide-react';
+import { ArrowRight, Globe, CheckCircle, Star, Code, Palette, Search, Smartphone, Shield, Zap, ExternalLink, Calendar, Users } from 'lucide-react';
 import Link from 'next/link';
 import { websiteContent } from '@/data';
 
@@ -13,6 +13,18 @@ const serviceData = websiteContent.services.find(service => service.category ===
 const websiteProjects = [
   {
     id: 1,
+    title: "Vedaz - Astrology Platform",
+    description: "Comprehensive astrology platform with admin dashboard built using Remix.js, TypeScript, Tailwind CSS with Node.js, Express.js and MongoDB backend",
+    image: "/api/placeholder/600/400",
+    url: "",
+    category: "Astrology Platform",
+    technologies: ["Remix.js", "TypeScript", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
+    features: ["Admin Dashboard", "User Management", "Astrology Services", "Real-time Consultations"],
+    completedDate: "10/12/2023",
+    client: "Vedaz Astrology"
+  },
+  {
+    id: 2,
     title: "Run Marine Services",
     description: "Comprehensive marine services website with service catalog, booking system, and customer portal",
     image: "/api/placeholder/600/400",
@@ -20,12 +32,11 @@ const websiteProjects = [
     category: "Business Website",
     technologies: ["React", "Next.js", "Tailwind CSS", "Node.js"],
     features: ["Responsive Design", "SEO Optimized", "Contact Forms", "Service Catalog"],
-    completedDate: "2024-01-15",
-    client: "Run Marine Services",
-    location: "Dubai, UAE"
+    completedDate: "15/01/2024",
+    client: "Run Marine Services"
   },
   {
-    id: 2,
+    id: 3,
     title: "Milan Manch Community Platform",
     description: "Dynamic community platform for events, networking, and social engagement",
     image: "/api/placeholder/600/400",
@@ -33,23 +44,10 @@ const websiteProjects = [
     category: "Community Platform",
     technologies: ["React", "Next.js", "Firebase", "Tailwind CSS"],
     features: ["Event Management", "User Profiles", "Community Forums", "Real-time Chat"],
-    completedDate: "2024-02-20",
-    client: "Milan Manch",
-    location: "Mumbai, India"
+    completedDate: "20/02/2024",
+    client: "Milan Manch"
   },
-  {
-    id: 3,
-    title: "TechStart SaaS Landing",
-    description: "Modern SaaS landing page with conversion optimization and analytics integration",
-    image: "/api/placeholder/600/400",
-    url: "#",
-    category: "SaaS Landing",
-    technologies: ["Next.js", "TypeScript", "Framer Motion", "Stripe"],
-    features: ["A/B Testing", "Analytics", "Payment Integration", "Lead Generation"],
-    completedDate: "2024-03-10",
-    client: "TechStart Inc",
-    location: "California, USA"
-  },
+
   {
     id: 4,
     title: "EcoShop E-commerce",
@@ -59,36 +57,11 @@ const websiteProjects = [
     category: "E-commerce",
     technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     features: ["Product Catalog", "Shopping Cart", "Payment Gateway", "Admin Dashboard"],
-    completedDate: "2024-03-25",
-    client: "EcoShop Ltd",
-    location: "London, UK"
+    completedDate: "25/03/2024",
+    client: "EcoShop Ltd"
   },
-  {
-    id: 5,
-    title: "HealthCare Pro Portal",
-    description: "Healthcare management system with patient records and appointment scheduling",
-    image: "/api/placeholder/600/400",
-    url: "#",
-    category: "Healthcare Portal",
-    technologies: ["React", "Laravel", "MySQL", "AWS"],
-    features: ["Patient Management", "Appointment System", "Medical Records", "Billing"],
-    completedDate: "2024-04-05",
-    client: "HealthCare Pro",
-    location: "Toronto, Canada"
-  },
-  {
-    id: 6,
-    title: "EduLearn Online Platform",
-    description: "Comprehensive online learning platform with course management and student tracking",
-    image: "/api/placeholder/600/400",
-    url: "#",
-    category: "Education Platform",
-    technologies: ["React", "Node.js", "PostgreSQL", "AWS"],
-    features: ["Course Creation", "Video Streaming", "Progress Tracking", "Certificates"],
-    completedDate: "2024-04-20",
-    client: "EduLearn Academy",
-    location: "Sydney, Australia"
-  }
+
+
 ];
 
 function HeroSection() {
@@ -97,13 +70,13 @@ function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900">
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-30"
         style={{ y }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20"></div>
       </motion.div>
-      
+
       {/* Floating elements */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (
@@ -126,7 +99,7 @@ function HeroSection() {
           />
         ))}
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10 text-center text-white">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -143,8 +116,8 @@ function HeroSection() {
             <Globe size={20} className="text-blue-400" />
             <span className="text-sm font-medium">Website Development Services</span>
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             className="text-6xl md:text-8xl font-bold mb-8 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -158,8 +131,8 @@ function HeroSection() {
               Development
             </span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl md:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -167,7 +140,7 @@ function HeroSection() {
           >
             {serviceData?.description}
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -186,7 +159,7 @@ function HeroSection() {
                 </span>
               </motion.button>
             </Link>
-            
+
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -240,7 +213,7 @@ function FeaturesSection() {
     <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -248,7 +221,7 @@ function FeaturesSection() {
           >
             Our Website Development Features
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -257,7 +230,7 @@ function FeaturesSection() {
             We build websites that not only look amazing but also perform exceptionally
           </motion.p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div
@@ -316,7 +289,7 @@ function ServiceDetailsSection() {
               ))}
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -353,7 +326,7 @@ function ProjectsSection() {
     <section id="projects" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -361,7 +334,7 @@ function ProjectsSection() {
           >
             Our Website Projects
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -370,7 +343,7 @@ function ProjectsSection() {
             Explore our portfolio of successful website development projects
           </motion.p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {websiteProjects.map((project, index) => (
             <motion.div
@@ -389,7 +362,7 @@ function ProjectsSection() {
                   </div>
                   <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                
+
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
@@ -401,26 +374,22 @@ function ProjectsSection() {
                       </Link>
                     )}
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                     {project.title}
                   </h3>
-                  
+
                   <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                     {project.description}
                   </p>
-                  
+
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                     <div className="flex items-center gap-1">
                       <Calendar size={14} />
-                      <span>{new Date(project.completedDate).toLocaleDateString()}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <MapPin size={14} />
-                      <span>{project.location}</span>
+                      <span>{project.completedDate}</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.slice(0, 3).map((tech, i) => (
                       <span key={i} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
@@ -433,7 +402,7 @@ function ProjectsSection() {
                       </span>
                     )}
                   </div>
-                  
+
                   {selectedProject === project.id && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
@@ -473,7 +442,7 @@ function CTASection() {
   return (
     <section className="py-24 bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 text-white">
       <div className="container mx-auto px-4 text-center">
-        <motion.h2 
+        <motion.h2
           className="text-4xl md:text-5xl font-bold mb-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -481,7 +450,7 @@ function CTASection() {
         >
           Ready to Build Your Website?
         </motion.h2>
-        <motion.p 
+        <motion.p
           className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -489,7 +458,7 @@ function CTASection() {
         >
           Let&apos;s create a stunning website that drives results for your business
         </motion.p>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -508,7 +477,7 @@ function CTASection() {
               </span>
             </motion.button>
           </Link>
-          
+
           <Link href="/services">
             <motion.button
               whileHover={{ scale: 1.05, y: -3 }}

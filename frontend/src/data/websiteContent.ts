@@ -62,19 +62,27 @@ const websiteContent: WebsiteContent = {
 
   portfolio: [
     {
-      id: "project-a",
-      name: "Project A - Run Marine Services",
-      url: "https://www.runmarine-services.com/",
-      description: "Marine services website with comprehensive service offerings",
+      id: "vedaz-astrology",
+      name: "Vedaz - Astrology Platform",
+      url: "",
+      description: "Comprehensive astrology platform with admin dashboard built using Remix.js, TypeScript, Tailwind CSS with Node.js, Express.js and MongoDB backend",
+      category: "custom-software"
+    },
+    {
+      id: "reclaim-platform",
+      name: "Reclaim - Digital Platform",
+      url: "",
+      description: "Modern digital platform built with React.js, Supabase backend and styled with Tailwind CSS for optimal user experience",
       category: "website"
     },
     {
-      id: "project-b",
-      name: "Project B - Milan Manch",
-      url: "https://milanmanch.com/",
-      description: "Community platform and event management system",
+      id: "milan-manch",
+      name: "Milan Manch",
+      url: "",
+      description: "Community platform and event management system built with Next.js and TypeScript",
       category: "website"
     }
+
   ],
 
   features: [
