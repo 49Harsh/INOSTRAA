@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -14,6 +14,7 @@ interface FormData {
   company: string;
   service: string;
   budget: string;
+  customBudget: string;
   message: string;
 }
 
@@ -79,6 +80,7 @@ function ContactForm() {
     company: '',
     service: '',
     budget: '',
+    customBudget: '',
     message: '',
   });
 
@@ -96,11 +98,13 @@ function ContactForm() {
   ];
 
   const budgets = [
-    '$5,000 - $10,000',
-    '$10,000 - $25,000',
-    '$25,000 - $50,000',
-    '$50,000+',
-    'Let\'s discuss'
+    '₹50,000 - ₹1,00,000 ($600 - $1,200)',
+    '₹1,00,000 - ₹2,50,000 ($1,200 - $3,000)',
+    '₹2,50,000 - ₹5,00,000 ($3,000 - $6,000)',
+    '₹5,00,000 - ₹10,00,000 ($6,000 - $12,000)',
+    '₹10,00,000+ ($12,000+)',
+    'Custom Budget - Let\'s Discuss',
+    'I need a quote first'
   ];
 
   const validateForm = (): boolean => {
@@ -141,12 +145,16 @@ function ContactForm() {
     setSubmitError('');
     
     try {
+      const finalBudget = formData.budget === 'Custom Budget - Let\'s Discuss' && formData.customBudget 
+        ? `Custom: ${formData.customBudget}` 
+        : formData.budget;
+
       const result = await ContactService.submitContactForm({
         name: formData.name,
         email: formData.email,
         company: formData.company,
         service: formData.service,
-        budget: formData.budget,
+        budget: finalBudget,
         message: formData.message,
       });
 
@@ -161,6 +169,7 @@ function ContactForm() {
             company: '',
             service: '',
             budget: '',
+            customBudget: '',
             message: '',
           });
         }, 5000);
@@ -219,7 +228,8 @@ function ContactForm() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
             Full Name *
           </label>
           <input
@@ -227,7 +237,7 @@ function ContactForm() {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-gray-50 hover:bg-white focus:bg-white ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
             placeholder="Enter your full name"
           />
           {errors.name && (
@@ -247,7 +257,8 @@ function ContactForm() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+            <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
             Email Address *
           </label>
           <input
@@ -255,7 +266,7 @@ function ContactForm() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-gray-50 hover:bg-white focus:bg-white ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
             placeholder="Enter your email address"
           />
           {errors.email && (
@@ -277,7 +288,8 @@ function ContactForm() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+            <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
             Company Name
           </label>
           <input
@@ -285,7 +297,7 @@ function ContactForm() {
             name="company"
             value={formData.company}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-gray-50 hover:bg-white focus:bg-white"
             placeholder="Enter your company name"
           />
         </motion.div>
@@ -295,18 +307,19 @@ function ContactForm() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+            <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
             Service Needed *
           </label>
           <select
             name="service"
             value={formData.service}
             onChange={handleChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${errors.service ? 'border-red-500' : 'border-gray-300'}`}
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-gray-50 hover:bg-white focus:bg-white text-gray-900 ${errors.service ? 'border-red-500' : 'border-gray-300'}`}
           >
-            <option value="">Select a service</option>
+            <option value="" className="text-gray-500">Select a service</option>
             {services.map((service) => (
-              <option key={service} value={service}>{service}</option>
+              <option key={service} value={service} className="text-gray-900 bg-white">{service}</option>
             ))}
           </select>
           {errors.service && (
@@ -327,20 +340,43 @@ function ContactForm() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
           Project Budget
         </label>
         <select
           name="budget"
           value={formData.budget}
           onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-gray-50 hover:bg-white focus:bg-white text-gray-900"
         >
-          <option value="">Select your budget range</option>
+          <option value="" className="text-gray-500">Select your budget range</option>
           {budgets.map((budget) => (
-            <option key={budget} value={budget}>{budget}</option>
+            <option key={budget} value={budget} className="text-gray-900 bg-white">{budget}</option>
           ))}
         </select>
+        
+        {/* Custom Budget Input */}
+        <AnimatePresence>
+          {formData.budget === 'Custom Budget - Let\'s Discuss' && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="mt-4"
+            >
+              <input
+                type="text"
+                name="customBudget"
+                value={formData.customBudget}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-gray-50 hover:bg-white focus:bg-white text-gray-900"
+                placeholder="Enter your custom budget (e.g., ₹75,000 or $900)"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
 
       <motion.div
@@ -348,7 +384,8 @@ function ContactForm() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+          <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
           Project Description *
         </label>
         <textarea
@@ -356,7 +393,7 @@ function ContactForm() {
           value={formData.message}
           onChange={handleChange}
           rows={6}
-          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none bg-gray-50 hover:bg-white focus:bg-white text-gray-900 ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
           placeholder="Tell us about your project, goals, and requirements..."
         ></textarea>
         {errors.message && (
@@ -481,11 +518,20 @@ function ContactSection() {
           
           {/* Contact Form */}
           <div className="max-w-4xl mx-auto">
-            <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-2xl text-center">Send Us a Message</CardTitle>
-              </CardHeader>
-              <CardContent className="p-8">
+            <Card className="border-0 shadow-2xl bg-white backdrop-blur-sm overflow-hidden">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-1">
+                <div className="bg-white rounded-t-lg">
+                  <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
+                    <CardTitle className="text-3xl text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">
+                      Send Us a Message
+                    </CardTitle>
+                    <p className="text-center text-gray-600 mt-2">
+                      We'd love to hear about your project. Fill out the form below and we'll get back to you within 24 hours.
+                    </p>
+                  </CardHeader>
+                </div>
+              </div>
+              <CardContent className="p-8 bg-white">
                 <ContactForm />
               </CardContent>
             </Card>

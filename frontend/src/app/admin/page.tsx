@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, Building, Calendar, MessageSquare, Eye, EyeOff, Lock, Users, TrendingUp, Clock } from 'lucide-react';
+import { Mail, Building, Calendar, MessageSquare, Eye, EyeOff, Lock, Users, TrendingUp, Clock } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { ContactService } from '@/services/contactService';
@@ -28,7 +28,9 @@ function LoginForm({ onLogin }: { onLogin: () => void }) {
 
     // Simple password check - in production, use proper authentication
     if (password === 'admin123') {
-      localStorage.setItem('adminAuth', 'true');
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('adminAuth', 'true');
+      }
       onLogin();
     } else {
       setError('Invalid password');
@@ -70,7 +72,7 @@ function LoginForm({ onLogin }: { onLogin: () => void }) {
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
-              
+
               {error && (
                 <motion.p
                   initial={{ opacity: 0 }}
@@ -89,12 +91,12 @@ function LoginForm({ onLogin }: { onLogin: () => void }) {
                 Access Dashboard
               </Button>
             </form>
-            
-            {/* <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+
+            <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
               <p className="text-yellow-300 text-sm">
                 <strong>Demo Password:</strong> admin123
               </p>
-            </div> */}
+            </div>
           </CardContent>
         </Card>
       </motion.div>
@@ -206,7 +208,7 @@ function SubmissionCard({ submission, index }: { submission: ContactFormData; in
                 {isExpanded ? 'Show Less' : 'Show More'}
               </button>
             </div>
-            
+
             <motion.div
               initial={false}
               animate={{ height: isExpanded ? 'auto' : '60px' }}
@@ -241,14 +243,11 @@ function AdminDashboard() {
   const loadData = async () => {
     setIsLoading(true);
     try {
-      const [submissionsResult, statsResult] = await Promise.all([
-        ContactService.getAllSubmissions(),
-        ContactService.getSubmissionStats()
-      ]);
+      const submissionsResult = await ContactService.getAllSubmissions();
 
       if (submissionsResult.success) {
         setSubmissions(submissionsResult.data || []);
-        
+
         // Calculate stats
         const now = new Date();
         const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -273,8 +272,10 @@ function AdminDashboard() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('adminAuth');
-    window.location.reload();
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('adminAuth');
+      window.location.reload();
+    }
   };
 
   if (isLoading) {
@@ -370,11 +371,25 @@ function AdminDashboard() {
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const authStatus = localStorage.getItem('adminAuth');
-    setIsAuthenticated(authStatus === 'true');
+    // Check authentication status on client side only
+    if (typeof window !== 'undefined') {
+      const authStatus = localStorage.getItem('adminAuth');
+      setIsAuthenticated(authStatus === 'true');
+    }
+    setIsLoading(false);
   }, []);
+
+  // Show loading while checking authentication
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return <LoginForm onLogin={() => setIsAuthenticated(true)} />;
