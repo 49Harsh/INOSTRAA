@@ -156,7 +156,7 @@
   </defs>
 
   <!-- Background -->
-  <rect width="400" height="150" fill="#242540"/>
+  <rect width="400" height="150" fill="transparent"/>
 
   <!-- Laptop Animation -->
   <g class="fade-in">
@@ -219,12 +219,12 @@
   <!-- Company Name -->
   <g class="fade-in">
     <text x="110" y="85" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="42" font-weight="700" fill="#FFFFFF" letter-spacing="1">
-      Inostra
+      Inostraa
     </text>
     
     <!-- Subtle tagline -->
     <text x="112" y="100" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="400" fill="#67B5FF" letter-spacing="3" opacity="0.8">
-      TECH SOLUTIONS
+      TECHNOLOGIES
     </text>
 
     <!-- Accent line -->
