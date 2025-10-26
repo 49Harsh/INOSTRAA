@@ -369,7 +369,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
 
           {/* Enhanced CTA button */}
           <div className="mt-auto">
-            <Link href={`/services/${service.category}`}>
+            <Link href={`/services/${service.id}`}>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

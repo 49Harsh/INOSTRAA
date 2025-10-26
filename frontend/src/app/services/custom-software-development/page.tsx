@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Code, CheckCircle, Star, Database, Settings, Zap, Shield, Users, ExternalLink, Calendar, MapPin, BarChart, Cog, Monitor, Cloud } from 'lucide-react';
+import { ArrowRight, Code, CheckCircle, Star, Database, Settings, Shield, Users, Calendar, BarChart, Cog, Monitor, Cloud } from 'lucide-react';
 import Link from 'next/link';
 import { websiteContent } from '@/data';
 
@@ -96,27 +96,39 @@ function HeroSection() {
 
       {/* Floating code elements */}
       <div className="absolute inset-0">
-        {[Code, Database, Settings, Monitor, Cloud, Cog].map((Icon, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            initial={{
-              x: Math.random() * 1200,
-              y: Math.random() * 800,
-            }}
-            animate={{
-              x: Math.random() * 1200,
-              y: Math.random() * 800,
-            }}
-            transition={{
-              duration: Math.random() * 15 + 10,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          >
-            <Icon size={24} className="text-white/10" />
-          </motion.div>
-        ))}
+        {[Code, Database, Settings, Monitor, Cloud, Cog].map((Icon, i) => {
+          // Use deterministic positions based on index to avoid hydration issues
+          const positions = [
+            { x1: 200, y1: 100, x2: 800, y2: 600 },
+            { x1: 600, y1: 300, x2: 300, y2: 200 },
+            { x1: 900, y1: 500, x2: 100, y2: 400 },
+            { x1: 400, y1: 200, x2: 700, y2: 700 },
+            { x1: 100, y1: 600, x2: 900, y2: 100 },
+            { x1: 700, y1: 400, x2: 500, y2: 300 }
+          ];
+
+          return (
+            <motion.div
+              key={i}
+              className="absolute"
+              initial={{
+                x: positions[i].x1,
+                y: positions[i].y1,
+              }}
+              animate={{
+                x: positions[i].x2,
+                y: positions[i].y2,
+              }}
+              transition={{
+                duration: 15 + i * 2,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            >
+              <Icon size={24} className="text-white/10" />
+            </motion.div>
+          );
+        })}
       </div>
 
       <div className="container mx-auto px-4 relative z-10 text-center text-white">
@@ -415,7 +427,7 @@ function ProjectsSection() {
                     </div>
                     <div className="flex items-center gap-1">
                       <Calendar size={14} />
-                      <span>{new Date(project.completedDate).toLocaleDateString()}</span>
+                      <span>{project.completedDate}</span>
                     </div>
                   </div>
 
