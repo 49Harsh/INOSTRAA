@@ -61,28 +61,72 @@ const websiteContent: WebsiteContent = {
   ],
 
   portfolio: [
+    // Website Development Projects
     {
-      id: "vedaz-astrology",
+      id: "vedaz-astrology-website",
       name: "Vedaz - Astrology Platform",
       url: "",
       description: "Comprehensive astrology platform with admin dashboard built using Remix.js, TypeScript, Tailwind CSS with Node.js, Express.js and MongoDB backend",
-      category: "custom-software"
+      category: "website"
     },
     {
-      id: "reclaim-platform",
-      name: "Reclaim - Digital Platform",
-      url: "",
-      description: "Modern digital platform built with React.js, Supabase backend and styled with Tailwind CSS for optimal user experience",
+      id: "run-marine-services",
+      name: "Run Marine Services",
+      url: "https://www.runmarine-services.com/",
+      description: "Comprehensive marine services website with service catalog, booking system, and customer portal",
       category: "website"
     },
     {
       id: "milan-manch",
-      name: "Milan Manch",
-      url: "",
-      description: "Community platform and event management system built with Next.js and TypeScript",
+      name: "Milan Manch Community Platform",
+      url: "https://milanmanch.com/",
+      description: "Dynamic community platform for events, networking, and social engagement",
       category: "website"
+    },
+    {
+      id: "ecoshop-ecommerce",
+      name: "EcoShop E-commerce",
+      url: "#",
+      description: "Sustainable products e-commerce platform with inventory management",
+      category: "website"
+    },
+    // Mobile App Development Projects
+    {
+      id: "vedaz-user-app",
+      name: "Vedaz User App",
+      url: "#",
+      description: "Comprehensive astrology mobile app for users to book consultations, view horoscopes, and access astrology services",
+      category: "mobile-app"
+    },
+    {
+      id: "vedaz-astrologer-app",
+      name: "Vedaz Astrologer App",
+      url: "#",
+      description: "Professional astrologer app with live streaming capabilities using Agora SDK for real-time consultations and client management",
+      category: "mobile-app"
+    },
+    {
+      id: "parental-control-app",
+      name: "Parental Control App",
+      url: "#",
+      description: "Advanced parental control application for monitoring and managing children's device usage with comprehensive safety features",
+      category: "mobile-app"
+    },
+    // Custom Software Development Projects
+    {
+      id: "erp-management-system",
+      name: "ERP Management System",
+      url: "#",
+      description: "Comprehensive enterprise resource planning system for manufacturing company with inventory, HR, and finance modules",
+      category: "custom-software"
+    },
+    {
+      id: "ai-interview-help-software",
+      name: "AI Interview Help Software",
+      url: "#",
+      description: "Desktop application built with Electron.js that provides AI-powered interview preparation with mock interviews, question analysis, and performance feedback",
+      category: "custom-software"
     }
-
   ],
 
   features: [

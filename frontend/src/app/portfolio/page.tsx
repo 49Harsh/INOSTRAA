@@ -4,73 +4,30 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Calendar, Users, Zap, Filter, Clock } from 'lucide-react';
 import Link from 'next/link';
-// Temporary simple data
-const portfolio = [
-  {
-    id: "1",
-    name: "Project A",
-    url: "#",
-    description: "Sample project",
-    category: "website"
-  }
-];
+import { websiteContent } from '@/data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { useInView } from 'react-intersection-observer';
 import { ServiceCategory } from '@/types';
 
-// Extended portfolio data with more projects
-const extendedPortfolio = [
-  ...portfolio,
-  {
-    id: "project-c",
-    name: "ECommerce Platform",
-    url: "#",
-    description: "Modern e-commerce solution with advanced analytics and inventory management",
-    category: "website" as ServiceCategory,
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-    year: 2024,
-    team: 4,
-    duration: "6 months",
-    features: ["Real-time inventory", "Advanced analytics", "Multi-payment gateway", "Mobile responsive"]
-  },
-  {
-    id: "project-d",
-    name: "HealthCare Management App",
-    url: "#",
-    description: "Comprehensive healthcare management system for hospitals and clinics",
-    category: "mobile-app" as ServiceCategory,
-    technologies: ["Flutter", "Firebase", "Node.js", "PostgreSQL"],
-    year: 2023,
-    team: 5,
-    duration: "8 months",
-    features: ["Patient records", "Appointment scheduling", "Telemedicine", "Real-time notifications"]
-  },
-  {
-    id: "project-e",
-    name: "CRM Dashboard",
-    url: "#",
-    description: "Custom CRM solution with advanced reporting and automation features",
-    category: "custom-software" as ServiceCategory,
-    technologies: ["React", "Laravel", "MySQL", "Redis"],
-    year: 2023,
-    team: 3,
-    duration: "4 months",
-    features: ["Lead management", "Automated workflows", "Advanced reporting", "Integration APIs"]
-  },
-  {
-    id: "project-f",
-    name: "Restaurant Ordering System",
-    url: "#",
-    description: "Complete restaurant management system with online ordering and delivery",
-    category: "website" as ServiceCategory,
-    technologies: ["Next.js", "Supabase", "Tailwind CSS", "Stripe"],
-    year: 2024,
-    team: 4,
-    duration: "5 months",
-    features: ["Online ordering", "Menu management", "Delivery tracking", "Payment processing"]
-  },
-];
+// Use real portfolio data from websiteContent
+const extendedPortfolio = websiteContent.portfolio.map(project => ({
+  ...project,
+  category: project.category as ServiceCategory,
+  technologies: project.category === 'website'
+    ? ["React", "Next.js", "Tailwind CSS", "Node.js"]
+    : project.category === 'mobile-app'
+      ? ["React Native", "Node.js", "MongoDB", "Firebase"]
+      : ["React", "Node.js", "PostgreSQL", "Docker"],
+  year: 2024,
+  team: 3,
+  duration: "3-6 months",
+  features: project.category === 'website'
+    ? ["Responsive Design", "SEO Optimized", "Fast Loading", "Modern UI"]
+    : project.category === 'mobile-app'
+      ? ["Cross Platform", "Push Notifications", "Offline Support", "Real-time Updates"]
+      : ["Custom Features", "Scalable Architecture", "Security First", "Integration Ready"]
+}));
 
 function AnimatedSection({ children, className }: { children: React.ReactNode; className?: string }) {
   const [ref, inView] = useInView({
@@ -97,10 +54,10 @@ function HeroSection() {
       <div className="absolute inset-0 opacity-50">
         <div className="w-full h-full bg-gradient-to-br from-blue-800/20 to-purple-800/20"></div>
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h1 
+          <motion.h1
             className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -108,8 +65,8 @@ function HeroSection() {
           >
             Our Portfolio
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl md:text-2xl mb-12 text-blue-100"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -117,8 +74,8 @@ function HeroSection() {
           >
             Showcasing our best work and digital solutions that drive success
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -126,9 +83,9 @@ function HeroSection() {
           >
             {[
               { label: 'Projects Completed', value: extendedPortfolio.length },
-              { label: 'Happy Clients', value: '50+' },
+              { label: 'Happy Clients', value: '7+' },
               { label: 'Technologies Used', value: '10+' },
-              { label: 'Years Experience', value: '5+' },
+              { label: 'Years Experience', value: '2+' },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-3xl font-bold mb-2 text-blue-200">{stat.value}</div>
@@ -166,7 +123,7 @@ function PortfolioSection() {
     <AnimatedSection className="py-24 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -174,7 +131,7 @@ function PortfolioSection() {
           >
             Featured Projects
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -183,9 +140,9 @@ function PortfolioSection() {
             Explore our diverse range of projects across different technologies and industries
           </motion.p>
         </div>
-        
+
         {/* Filter Buttons */}
-        <motion.div 
+        <motion.div
           className="flex flex-wrap justify-center gap-4 mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -195,20 +152,19 @@ function PortfolioSection() {
             <button
               key={filter.id}
               onClick={() => handleFilter(filter.id)}
-              className={`flex items-center px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                activeFilter === filter.id
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                  : 'bg-white text-gray-600 border border-gray-200 hover:border-blue-300 hover:text-blue-600'
-              }`}
+              className={`flex items-center px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeFilter === filter.id
+                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                : 'bg-white text-gray-600 border border-gray-200 hover:border-blue-300 hover:text-blue-600'
+                }`}
             >
               <filter.icon size={18} className="mr-2" />
               {filter.label}
             </button>
           ))}
         </motion.div>
-        
+
         {/* Projects Grid */}
-        <motion.div 
+        <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           layout
         >
@@ -232,7 +188,7 @@ function PortfolioSection() {
                           <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg"></div>
                         </div>
                       </div>
-                      
+
                       {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
                         <div className="flex space-x-4">
@@ -251,7 +207,7 @@ function PortfolioSection() {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Category Badge */}
                     <div className="absolute top-4 right-4">
                       <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-blue-600 text-sm font-medium rounded-full">
@@ -259,7 +215,7 @@ function PortfolioSection() {
                       </span>
                     </div>
                   </div>
-                  
+
                   <CardHeader>
                     <CardTitle className="text-xl mb-2 group-hover:text-blue-600 transition-colors">
                       {project.name}
@@ -268,7 +224,7 @@ function PortfolioSection() {
                       {project.description}
                     </CardDescription>
                   </CardHeader>
-                  
+
                   <CardContent>
                     {/* Project Stats */}
                     {'year' in project && (
@@ -291,13 +247,13 @@ function PortfolioSection() {
                         )}
                       </div>
                     )}
-                    
+
                     {/* Technologies */}
                     {'technologies' in project && project.technologies && (
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.technologies.map((tech, i) => (
-                          <span 
-                            key={i} 
+                          <span
+                            key={i}
                             className="px-2 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded"
                           >
                             {tech}
@@ -305,7 +261,7 @@ function PortfolioSection() {
                         ))}
                       </div>
                     )}
-                    
+
                     {/* Features */}
                     {'features' in project && project.features && (
                       <ul className="space-y-1 text-sm text-gray-600">
@@ -323,9 +279,9 @@ function PortfolioSection() {
             ))}
           </AnimatePresence>
         </motion.div>
-        
+
         {filteredProjects.length === 0 && (
-          <motion.div 
+          <motion.div
             className="text-center py-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -343,7 +299,7 @@ function CTASection() {
   return (
     <AnimatedSection className="py-24 bg-gradient-to-r from-blue-900 to-purple-900 text-white">
       <div className="container mx-auto px-4 text-center">
-        <motion.h2 
+        <motion.h2
           className="text-4xl md:text-5xl font-bold mb-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -351,7 +307,7 @@ function CTASection() {
         >
           Have a Project in Mind?
         </motion.h2>
-        <motion.p 
+        <motion.p
           className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -359,7 +315,7 @@ function CTASection() {
         >
           Let&apos;s discuss how we can bring your vision to life with our expertise
         </motion.p>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

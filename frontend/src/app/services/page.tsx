@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Check, Zap, Smartphone, Globe, Code, Clock, Sparkles, Rocket, Shield, Target, Brain, Lightbulb, Palette, Database, Cloud, Settings } from 'lucide-react';
+import { ArrowRight, Check, Zap, Smartphone, Globe, Code, Clock, Sparkles, Rocket, Shield, Target, Brain, Lightbulb, Palette, Database, Cloud, Settings, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import { websiteContent } from '@/data';
 
@@ -686,6 +686,169 @@ function ProcessSection() {
   );
 }
 
+// Portfolio showcase section
+function PortfolioSection() {
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  
+  const categories = [
+    { id: 'all', name: 'All Projects', icon: Code },
+    { id: 'website', name: 'Websites', icon: Globe },
+    { id: 'mobile-app', name: 'Mobile Apps', icon: Smartphone },
+    { id: 'custom-software', name: 'Custom Software', icon: Settings }
+  ];
+
+  const filteredProjects = selectedCategory === 'all' 
+    ? websiteContent.portfolio 
+    : websiteContent.portfolio.filter(project => project.category === selectedCategory);
+
+  return (
+    <section className="py-32 bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-purple-400/5 to-emerald-400/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-72 h-72 bg-gradient-to-r from-emerald-400/5 to-purple-400/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-100 to-emerald-100 rounded-full border border-purple-200/50 mb-8"
+          >
+            <Lightbulb size={20} className="text-purple-600" />
+            <span className="text-sm font-medium text-purple-800">Our Work</span>
+          </motion.div>
+
+          <motion.h2
+            className="text-5xl md:text-6xl font-bold text-gray-900 mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <span className="bg-gradient-to-r from-gray-900 via-purple-800 to-emerald-800 bg-clip-text text-transparent">
+              Featured
+            </span>
+            <br />
+            <span className="text-gray-900">Projects</span>
+          </motion.h2>
+
+          <motion.p
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Explore our portfolio of successful projects across different technologies and industries
+          </motion.p>
+        </div>
+
+        {/* Category Filter */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
+          {categories.map((category) => (
+            <motion.button
+              key={category.id}
+              onClick={() => setSelectedCategory(category.id)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-300 ${
+                selectedCategory === category.id
+                  ? 'bg-gradient-to-r from-purple-600 to-emerald-600 text-white shadow-lg'
+                  : 'bg-white text-gray-700 border border-gray-200 hover:border-purple-300 hover:shadow-md'
+              }`}
+            >
+              <category.icon size={18} />
+              {category.name}
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
+        <motion.div 
+          layout
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+        >
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              layout
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group cursor-pointer"
+            >
+              <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 group-hover:-translate-y-2">
+                {/* Project Image/Icon */}
+                <div className="relative h-48 bg-gradient-to-br from-purple-500 to-emerald-500 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 bg-black/20"></div>
+                  {project.category === 'website' && <Globe size={48} className="text-white/80 relative z-10" />}
+                  {project.category === 'mobile-app' && <Smartphone size={48} className="text-white/80 relative z-10" />}
+                  {project.category === 'custom-software' && <Code size={48} className="text-white/80 relative z-10" />}
+                  
+                  {/* Category Badge */}
+                  <div className="absolute top-4 right-4 z-20">
+                    <span className="bg-white/20 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/30">
+                      {project.category === 'website' && 'Website'}
+                      {project.category === 'mobile-app' && 'Mobile App'}
+                      {project.category === 'custom-software' && 'Software'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
+                    {project.name}
+                  </h3>
+                  
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    {project.url && project.url !== "#" ? (
+                      <Link href={project.url} target="_blank" className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium text-sm">
+                        <ExternalLink size={16} />
+                        View Live
+                      </Link>
+                    ) : (
+                      <span className="text-gray-400 text-sm">Coming Soon</span>
+                    )}
+                    
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      className="w-8 h-8 bg-gradient-to-r from-purple-100 to-emerald-100 rounded-full flex items-center justify-center"
+                    >
+                      <ArrowRight size={16} className="text-purple-600" />
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* View All Portfolio Button */}
+        <div className="text-center mt-16">
+          <Link href="/portfolio">
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-emerald-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                View Complete Portfolio
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </motion.button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Advanced tech stack with 3D carousel
 function TechStackSection() {
   const [selectedCategory, setSelectedCategory] = useState('frontend');
@@ -902,7 +1065,7 @@ function TechStackSection() {
         >
           {[
             { number: '50+', label: 'Technologies Mastered' },
-            { number: '100+', label: 'Projects Delivered' },
+            { number: '9+', label: 'Projects Completed' },
             { number: '99%', label: 'Client Satisfaction' },
             { number: '24/7', label: 'Support Available' },
           ].map((stat, index) => (
@@ -1113,6 +1276,7 @@ export default function ServicesPage() {
       <HeroSection />
       <ServicesGrid />
       <ProcessSection />
+      <PortfolioSection />
       <TechStackSection />
       <CTASection />
     </div>
